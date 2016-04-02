@@ -5,7 +5,8 @@ import java.util.Collection;
 import java.util.List;
 
 public interface General<T, ID extends Serializable> {
-		
+	
+	    //using all types of methods HQL can support for any Pojo model (T) and a primary Key (ID)
 	
 	    T getById(ID id, boolean lock);
 	    T getById(ID id);

@@ -23,8 +23,7 @@ public abstract class GenericDaoImplementation<T, ID extends Serializable> imple
 	
 	
 	public GenericDaoImplementation(){
-		// TODO Auto-generated constructor stub
-		
+				
 		this.persistentClass = (Class<T>)((ParameterizedType)getClass().getGenericSuperclass()).getActualTypeArguments()[0];
 	}
 	
