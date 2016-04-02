@@ -18,11 +18,8 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import org.hibernate.validator.constraints.NotEmpty;
 
-//Need to use ->> SpringSecurity 
-//Apache Tiles - 
-
-//SrpingWebFlow - ( - )
-
+//Using core concepts and interfaces of Spring Data repositories.
+//Reference: http://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html
 
 @Entity
 @Table(name="user")

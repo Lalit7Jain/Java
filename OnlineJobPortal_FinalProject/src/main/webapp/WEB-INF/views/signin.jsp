@@ -15,11 +15,41 @@
 	rel="stylesheet" type="text/css">
 <title>Sign In</title>
 </head>
-<body>
+<body >
 
 <div class="container">
- <div class="jumbotron text-center">
-						<h> Please Sign In below your account credentials to explore more!</h>
+ <div style="color: orange; background-color: inherit;" class="jumbotron text-center">
+						<p> Please Sign In below your account credentials to explore more!</p>
+</div>
+
+<div class = "container">
+	<form:form action="signin.htm" commandName="user"
+			method="post">
+		
+<!-- 			<div class="jumbotron text-center"> -->
+<!-- 				<h1> Sign in! </h1> -->
+<!-- 			</div> -->
+			<table width="100" class="table" style="border-style: dashed; font-style: italic; color: black;table-layout: auto; " align="center">
+				<tr>
+					<td>Email Id:</td>
+					<td><form:input path="email" size="30" /> <font color="red"><form:errors
+								path="email" /></font></td>
+				</tr>
+
+				<tr>
+					<td>Password:</td>
+					<td><form:password path="password" size="30" /> <font color="red"><form:errors
+								path="password" /></font></td>
+				</tr>
+				
+				<tr>
+					<td colspan="2"><input type="submit" value="Sign In" /></td>
+					<td><a href="/lalit">Back to home</a></td>
+				</tr>
+			</table>
+			<i>No account yet?</i><a href="register.htm"><i>Register here</i></a>
+		</form:form>
+	
 </div>
 
 </div>

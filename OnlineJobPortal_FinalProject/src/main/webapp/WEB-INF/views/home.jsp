@@ -219,16 +219,25 @@
 </nav>
 
 <div class="jumbotron text-center">
-  <h1>Company</h1> 
+  <h1>Welcome to the Online Job Portal! </h1> 
   <p> Today's time is "${serverTime}")</p> 
   
  
   <form class="form-inline">
-  <button  id="register" >Register</button>
-  <button  id="signin" >Sign In</button>
-<!--     <input type="email" class="form-control" size="50" placeholder="Email Address" required> -->
+ 
+ <!--     <input type="email" class="form-control" size="50" placeholder="Email Address" required> -->
 <!--     <button type="button" class="btn btn-danger">Subscribe</button> -->
   </form>
+  <div class="row text-center slideanim">
+    <div class="col-sm-6">
+     <button id="register"> Register </button>
+    
+    </div>
+    <div class="col-sm-6">
+     <button id="signin"> Sign In </button>
+    
+    </div>
+    </div>
 </div>
 
 <!-- Container (About Section) -->
