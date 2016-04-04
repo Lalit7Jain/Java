@@ -12,10 +12,10 @@ import com.neu.lalit.pojo.Company;
 public class CompanDaoImplementation extends GenericDaoImplementation<Company, Long> implements CompanyDao {
 
 	@SuppressWarnings("unchecked")
-	public Company getByCompanyName(String name) {
+	public Company getByCompanyEmail(String email) {
 		Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(persistentClass);
 		
-		criteria.add(Restrictions.eq("name", name));
+		criteria.add(Restrictions.eq("email", email));
 		return (Company)DataAccessUtils.singleResult(criteria.list());	
 
 }

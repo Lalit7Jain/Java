@@ -50,7 +50,7 @@ public class ListingController {
 			return "postjob";
 		}
 
-		Company company = companyService.getCompanyName(companyListing.getName());
+		Company company = companyService.getCompanybyEmail(companyListing.getName());
 		if (company == null) {
 
 			Company newcompany = companyListing.getCompany();

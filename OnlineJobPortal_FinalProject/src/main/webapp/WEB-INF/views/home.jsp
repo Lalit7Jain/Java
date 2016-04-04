@@ -209,7 +209,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#about">ABOUT</a></li>
         <li><a href="#services">SERVICES</a></li>
-        <li><a href="#employer">Employer</a></li>
+        <li><a href="#employer">EMPLOYER</a></li>
         <li><a href="#pricing">PRICING</a></li>
         <li><a href="#contact">CONTACT</a></li>
         <li><a href="register.htm">REGISTER</a></li>
@@ -230,11 +230,11 @@
   </form>
   <div class="row text-center slideanim">
     <div class="col-sm-6">
-     <button id="register"> Register </button>
+     <button class="btn btn-default btn-lg" id="register"> Register </button>
     
     </div>
     <div class="col-sm-6">
-     <button id="signin"> Sign In </button>
+     <button class="btn btn-default btn-lg" id="signin"> Sign In </button>
     
     </div>
     </div>
@@ -316,12 +316,12 @@
   <h2>Employers! Are you looking for the right candidates? </h2><br>
 <!--   <h4>What we have created</h4> -->
   <div class="row text-center slideanim">
-    <div class="col-sm-4">
-     <button id="empregister"> Register </button>
+    <div class="col-sm-6">
+     <button class="btn btn-default btn-lg" id="empregister"> Register </button>
     
     </div>
-    <div class="col-sm-4">
-     <button id="postjob"> Post Job </button>
+    <div class="col-sm-6">
+     <button class="btn btn-default btn-lg" id="empsignin"> Sign In </button>
     
     </div>
 <!--     <div class="col-sm-4"> -->
@@ -484,8 +484,12 @@ $(document).ready(function(){
         location.href = "signin.htm";
     };
     
-    document.getElementById("postjob").onclick = function () {
-        location.href = "postjob.htm";
+    document.getElementById("empsignin").onclick = function () {
+        location.href = "empsignin.htm";
+    };
+    
+    document.getElementById("empregister").onclick = function () {
+        location.href = "empregister.htm";
     };
     
 });

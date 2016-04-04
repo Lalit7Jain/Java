@@ -29,6 +29,7 @@
 <!-- 			<div class="jumbotron text-center"> -->
 <!-- 				<h1> Sign in! </h1> -->
 <!-- 			</div> -->
+			<h6 style="color: red;"><c:out value = "${message}"></c:out></h6>
 			<table width="100" class="table" style="border-style: dashed; font-style: italic; color: black;table-layout: auto; " align="center">
 				<tr>
 					<td>Email Id:</td>

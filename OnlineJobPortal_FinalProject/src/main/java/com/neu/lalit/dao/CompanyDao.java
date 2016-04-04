@@ -4,6 +4,6 @@ import com.neu.lalit.pojo.Company;
 
 public interface CompanyDao extends General<Company, Long> {
 
-	public Company getByCompanyName(String name);
+	public Company getByCompanyEmail(String email);
 	
 }

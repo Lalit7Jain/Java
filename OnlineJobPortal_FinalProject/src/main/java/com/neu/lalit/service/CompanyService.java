@@ -8,6 +8,6 @@ public interface CompanyService {
 	public Long save(Company company);
 	public void update(Company company);
 	public Company getById(Long id);
-	public Company getCompanyName(String name);
+	public Company getCompanybyEmail(String email);
 	
 }

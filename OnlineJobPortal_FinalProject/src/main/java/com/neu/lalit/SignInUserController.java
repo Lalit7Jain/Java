@@ -2,6 +2,8 @@ package com.neu.lalit;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -13,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.neu.lalit.pojo.User;
 import com.neu.lalit.service.UserService;
@@ -27,8 +30,9 @@ public class SignInUserController {
 	UserService userservice;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String singin(@ModelAttribute("user") User user, BindingResult result, ModelMap model) {
-
+	public ModelAndView executeSignIn(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("user") User user, BindingResult result )
+	 {
+		ModelAndView model = null;
 		// @Valid is used for Bean validation not using any other spring or
 		// hibernate validator. Rather using JSR-303 bean validation capability
 
@@ -42,24 +46,35 @@ public class SignInUserController {
 				System.out.println("Arguments : " + error.getArguments());
 				System.out.println("Default message : " + error.getDefaultMessage());
 			}
-			model.put("user", user);
-			return "signin";
+			model.addObject("user",user);
+			return model;
+//			model.put("user", user);
+//			return "signin";
 		}
 
 		User newuser = userservice.getByEmail(user.getEmail());
 		if (!(newuser == null)) {
 			if (newuser.getEmail().equals(user.getEmail()) && newuser.getPassword().equals(user.getPassword())) {
-				model.addAttribute("userLogged", newuser);
-				return "searchjob";
+				model = new ModelAndView("searchjob");
+				model.addObject("userLogged",newuser);
+				return model;
+//				model.addAttribute("userLogged", newuser);
+//				return "searchjob";
 			}
 
 		} else {
-			model.put("user", user);
-			return "signin";
+			 model = new ModelAndView("signin");			
+			 model.addObject("user", user);		
+			 request.setAttribute("message", "UserName or Password you entered does not match! Try again");
+
+			
+//			model.put("user", user);
+//			return "signin";
 
 		}
 		logger.debug("User was not authenticated.");
-		return "signin";
+		return model;
+//		return "signin";
 	}
 
 	@RequestMapping(method = RequestMethod.GET)

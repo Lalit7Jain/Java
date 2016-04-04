@@ -3,12 +3,14 @@ package com.neu.lalit.pojo;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -22,6 +24,13 @@ public class Company implements Serializable {
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@Column(unique=true)
+	@NotEmpty
+	@Pattern(regexp= ".+@.+\\.[a-z]+")
+	private String email;
+	
+	private String password;
 	
 	@NotEmpty
 	private String name;
@@ -53,4 +62,20 @@ public class Company implements Serializable {
 		this.listings = listings;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
 }

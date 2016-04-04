@@ -15,7 +15,7 @@ public class CompanyServiceImp implements CompanyService {
 
 	@Autowired
 	CompanyDao companyDao;
-	
+
 	@Override
 	public Long save(Company company) {
 		return companyDao.save(company);
@@ -33,9 +33,8 @@ public class CompanyServiceImp implements CompanyService {
 	}
 
 	@Override
-	public Company getCompanyName(String name) {
-		
-		return companyDao.getByCompanyName(name);
+	public Company getCompanybyEmail(String email) {
+		return companyDao.getByCompanyEmail(email);
 	}
 
 }
