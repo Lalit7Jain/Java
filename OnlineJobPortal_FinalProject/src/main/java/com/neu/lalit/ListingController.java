@@ -2,6 +2,7 @@ package com.neu.lalit;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -13,6 +14,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.neu.lalit.dto.CompanyListing;
 import com.neu.lalit.pojo.Company;
@@ -32,6 +34,8 @@ public class ListingController {
 	@Autowired
 	ListingService listingService;
 
+	
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public String listingJob(@ModelAttribute("companyListing") @Valid CompanyListing companyListing, BindingResult result,
 			ModelMap model) {
@@ -49,7 +53,8 @@ public class ListingController {
 			model.put("companyListing", companyListing);
 			return "postjob";
 		}
-
+		
+		
 		Company company = companyService.getCompanybyEmail(companyListing.getName());
 		if (company == null) {
 

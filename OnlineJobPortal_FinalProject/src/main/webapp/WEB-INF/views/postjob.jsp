@@ -29,7 +29,7 @@
 			<table class=table>
 				<tr>
 					<td>Company Name:</td>
-					<td><form:input path="name" size="30" /> <font color="red"><form:errors
+					<td><form:input path="name" value="${sessionScope.company.name}" disabled="true" size="30" /> <font color="red"><form:errors
 								path="name" /></font></td>
 				</tr>
 

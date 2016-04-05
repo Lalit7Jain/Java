@@ -6,6 +6,10 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.commons.mail.DefaultAuthenticator;
+import org.apache.commons.mail.Email;
+import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail.SimpleEmail;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -95,7 +99,26 @@ public class UserController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		
+			
+			//Sending Email to the User
+			Email email = new SimpleEmail();
+			email.setHostName("smtp.googlemail.com");
+			email.setSmtpPort(465);
+			email.setAuthenticator(new DefaultAuthenticator("lalit.7.jain@gmail.com", "Outlook@13"));
+			email.setSSL(true);
+			try {
+				email.setFrom("onlineportal@gmail.com");
+				email.setSubject("Welcome aboard to Online Job Portal");
+				email.setMsg(" This is to confirm that you have been sucessfully registered with us! ");
+				email.addTo(newuser.getEmail());
+				email.send();
+			} catch (EmailException e) {
+				
+				e.printStackTrace();
+			}
+			
+			
+			//Redirecting to register page for successful signup
 			model.addAttribute("signupSuccess",true);
 			return "register";
 			

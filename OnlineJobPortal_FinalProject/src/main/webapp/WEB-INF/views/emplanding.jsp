@@ -1,0 +1,75 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href="http://fonts.googleapis.com/css?family=Montserrat"
+	rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lato"
+	rel="stylesheet" type="text/css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<title>Employer Landing</title>
+</head>
+<body>
+	<c:choose>
+		<c:when test="${empty sessionScope.company }">
+			<div class=container>
+
+				<p>You need to sign in here</p>
+				<a href="empsignin.htm"> Sign In </a>
+
+			</div>
+
+		</c:when>
+		<c:otherwise>
+
+			<div class=container>
+				<div class="jumbotron text-center">
+					<p>
+						Welcome
+						<c:out value="${sessionScope.company.name}"></c:out>
+						! Add jobs and check your application status here
+					</p>
+				</div>
+			</div>
+
+			<div class="row text-center slideanim">
+				<div class="col-sm-6">
+					<button class="btn btn-default btn-lg" id="addjob">Add a
+						Job Opening!</button>
+
+				</div>
+				<div class="col-sm-6">
+					<button class="btn btn-default btn-lg" id="checkstatus">Check
+						status of your application</button>
+
+				</div>
+			</div>
+			<script type="text/javascript">
+				$(document)
+						.ready(
+								function() {
+									document.getElementById("addjob").onclick = function() {
+										location.href = "postjob.htm";
+									};
+
+									document.getElementById("checkstatus").onclick = function() {
+										location.href = "checkstaus.htm";
+									};
+
+								});
+			</script>
+
+
+		</c:otherwise>
+	</c:choose>
+</body>
+</html>
