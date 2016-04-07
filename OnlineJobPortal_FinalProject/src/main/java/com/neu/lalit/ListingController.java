@@ -2,6 +2,8 @@ package com.neu.lalit;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -34,12 +36,12 @@ public class ListingController {
 	@Autowired
 	ListingService listingService;
 
-	
-	
 	@RequestMapping(method = RequestMethod.POST)
-	public String listingJob(@ModelAttribute("companyListing") @Valid CompanyListing companyListing, BindingResult result,
-			ModelMap model) {
-
+	public ModelAndView jobPost(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("companyListing") @Valid CompanyListing companyListing, BindingResult result){
+	
+		ModelAndView mav = null;
+		
+		
 		logger.debug("ListingController#working");
 
 		// Check if there is any Binding error
@@ -50,32 +52,56 @@ public class ListingController {
 				System.out.println("Arguments : " + error.getArguments());
 				System.out.println("Default message : " + error.getDefaultMessage());
 			}
-			model.put("companyListing", companyListing);
-			return "postjob";
+			mav = new ModelAndView("postjob","companyListing", companyListing);
+			
 		}
 		
+		HttpSession session = request.getSession();
+		Company company = (Company)session.getAttribute("company");		
 		
-		Company company = companyService.getCompanybyEmail(companyListing.getName());
-		if (company == null) {
-
-			Company newcompany = companyListing.getCompany();
-			Long compId = companyService.save(newcompany);
-
+		if(!(company == null)){
+		
 			Listing newListing = companyListing.getListing();
-			newListing.setCompany(newcompany);
+			newListing.setCompany(company);
 			listingService.save(newListing);
-
-			model.addAttribute("listingSucess", true);
-			model.addAttribute("listingname", newListing.getTitle());
-			return "postjob";
-
+			mav = new ModelAndView("postjob","listingname",newListing);
+			
 		} else {
-			model.addAttribute("companyListing", companyListing);
-			return "postjob";
-
+			
+			mav = new ModelAndView("postjob","companyListing", companyListing);
 		}
-
+		
+		return mav;
 	}
+	
+//	@RequestMapping(method = RequestMethod.POST)
+//	public String listingJob(@ModelAttribute("companyListing") @Valid CompanyListing companyListing, BindingResult result,
+//			ModelMap model) {
+//
+//		
+//		
+//		
+//		Company company = companyService.getCompanybyEmail(companyListing.getName());
+//		if (company == null) {
+//
+//			Company newcompany = companyListing.getCompany();
+//			Long compId = companyService.save(newcompany);
+//
+//			Listing newListing = companyListing.getListing();
+//			newListing.setCompany(newcompany);
+//			listingService.save(newListing);
+//
+//			model.addAttribute("listingSucess", true);
+//			model.addAttribute("listingname", newListing.getTitle());
+//			return "postjob";
+//
+//		} else {
+//			model.addAttribute("companyListing", companyListing);
+//			return "postjob";
+//
+//		}
+//
+//	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String initializeForm(@ModelAttribute("companyListing") CompanyListing companyListing, BindingResult result)

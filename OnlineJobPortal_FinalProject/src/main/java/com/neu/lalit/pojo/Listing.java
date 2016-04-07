@@ -155,8 +155,7 @@ public class Listing implements Serializable {
 	public void setApplications(List<Application> applications) {
 		this.applications = applications;
 	}
-	
-	
-	
+//
+		
 
 }

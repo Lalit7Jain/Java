@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -32,6 +33,7 @@ public class SignInUserController {
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView executeSignIn(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("user") User user, BindingResult result )
 	 {
+		HttpSession httpSession = request.getSession(true);
 		ModelAndView model = null;
 		// @Valid is used for Bean validation not using any other spring or
 		// hibernate validator. Rather using JSR-303 bean validation capability
@@ -55,6 +57,7 @@ public class SignInUserController {
 		User newuser = userservice.getByEmail(user.getEmail());
 		if (!(newuser == null)) {
 			if (newuser.getEmail().equals(user.getEmail()) && newuser.getPassword().equals(user.getPassword())) {
+				httpSession.setAttribute("user", newuser);
 				model = new ModelAndView("searchjob");
 				model.addObject("userLogged",newuser);
 				return model;

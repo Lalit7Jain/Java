@@ -1,5 +1,8 @@
 package com.neu.lalit.servimp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +30,17 @@ public class ListingServiceImp implements ListingService {
 
 	public Listing getById(Long id) {
 		return listingDao.getById(id);
+	}
+
+	@Override
+	public List<Listing> getListing() {
+		//List<Listing> listings = new ArrayList<Listing>();
+		return listingDao.loadAll();
+	}
+
+	@Override
+	public List<Listing> searchListing(String key) {
+		return listingDao.searchListing(key);
 	}
 
 }

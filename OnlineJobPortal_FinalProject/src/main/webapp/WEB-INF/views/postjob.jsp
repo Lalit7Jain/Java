@@ -41,13 +41,13 @@
 
 				<tr>
 					<td>Description:</td>
-					<td><form:textarea path="description" /> <font color="red"><form:errors
-								path="description" /></font></td>
+					<td><form:textarea rows="40" cols="100" path="description" /> <font color="red"><form:errors
+								path="description" placeholder="Add Job description here"/></font></td>
 				</tr>
 
 				<tr>
 					<td>Salary :</td>
-					<td><form:input path="salary" size="30" /> <font color="red"><form:errors
+					<td><form:input path="salary" size="30" placeholder="Monthly estimate in $"/> <font color="red"><form:errors
 								path="salary" /></font></td>
 				</tr>
 
@@ -83,7 +83,7 @@
 
 				<tr>
 					<td>Job Type:</td>
-					<td><form:input path="type" /> Type 1 for Permanent and 2 for Temporary</td>
+					<td><form:input path="type" placeholder="Type 1 for Permanent and 2 for Temporary"/></td>
 				</tr>
 
 				<tr>
@@ -98,10 +98,10 @@
 	<c:otherwise>
 	<div class=container>
 				<div class="jumbotron text-center">
-					<p> Thank you! You have successfully posted a Listing for: </p><b><c:out value="${listingname}"></c:out></b>
+					<p> Thank you! You have successfully posted a Listing for: </p><b><c:out value="${listingname.title}"></c:out></b>
 					<h> Now, its our duty to get you the right candidates which matches your requirements</h>
 					
-					<a href="#" > You can check the status of application's here </a>
+					<a href="emplanding.htm" > You can check the status of application's here </a>
 					
 				</div>
 			</div>

@@ -3,9 +3,11 @@ package com.neu.lalit.dto;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.jboss.logging.Message;
 
 import com.neu.lalit.pojo.Company;
 import com.neu.lalit.pojo.Listing;
@@ -25,6 +27,7 @@ public class CompanyListing {
 	
 	@NotNull
 	@NotEmpty
+	@Size(max = 5000)
 	private String description;
 	
 	@NotNull
