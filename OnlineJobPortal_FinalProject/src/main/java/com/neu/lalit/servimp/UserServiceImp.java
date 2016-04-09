@@ -1,5 +1,7 @@
 package com.neu.lalit.servimp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,7 @@ public class UserServiceImp implements UserService {
 	
 	public void update(User user) {
 		userdao.update(user);
+		
 	}
 	
 	//Using Spring Security to get the current principal(User)
@@ -38,6 +41,12 @@ public class UserServiceImp implements UserService {
 
 	public User getByEmail(String email) {
 		return userdao.getByEmail(email);
+	}
+
+	@Override
+	public List<User> getAllUser() {
+		
+		return userdao.loadAll();
 	}
 
 }

@@ -63,7 +63,7 @@ public class ListingController {
 		
 			Listing newListing = companyListing.getListing();
 			newListing.setCompany(company);
-			listingService.save(newListing);
+			listingService.save(newListing);		
 			mav = new ModelAndView("postjob","listingname",newListing);
 			
 		} else {

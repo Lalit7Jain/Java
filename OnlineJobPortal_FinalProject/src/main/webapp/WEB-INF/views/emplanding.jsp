@@ -20,12 +20,13 @@
 </head>
 <body>
 	<c:choose>
-		<c:when test="${empty sessionScope.company }">
+		<c:when test="${empty sessionScope.company}">
 			<div class=container>
-
-				<p>You need to sign in here</p>
-				<a href="empsignin.htm"> Sign In </a>
-
+				<div class="jumbotron text-center">
+				<p>Sign in before you can add Jobs! </p>
+				<a href="empsignin.htm"> Sign In </a> <br/> <br/>
+				<a href="empregister.htm"> No account yet? Register</a>
+				</div>
 			</div>
 
 		</c:when>
@@ -47,11 +48,14 @@
 						Job Opening!</button>
 
 				</div>
+				<form>
 				<div class="col-sm-6">
 					<button class="btn btn-default btn-lg" id="checkstatus">Check
 						status of your application</button>
 
 				</div>
+				<input type="hidden" name="l" value="${sessionScope.company.id}">
+				</form>
 			</div>
 			<script type="text/javascript">
 				$(document)
@@ -62,7 +66,7 @@
 									};
 
 									document.getElementById("checkstatus").onclick = function() {
-										location.href = "checkstaus.htm";
+										location.href = "checkappstatus.htm";
 									};
 
 								});

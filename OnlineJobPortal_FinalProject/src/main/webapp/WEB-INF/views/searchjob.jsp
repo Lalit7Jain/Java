@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -69,6 +70,23 @@
     font-size: 82%;
     overflow:scroll;
 }
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.fade {
+    opacity: 0;
+    -webkit-transition: opacity .15s linear;
+    -o-transition: opacity .15s linear;
+    transition: opacity .15s linear;
+}
 </style>
 <title>Search jobs</title>
 
@@ -77,8 +95,7 @@
 
 <body>
 
-
-	<div class=container>
+<div class=container>
 		<div class="row">
 			<h2>
 				Hi
@@ -88,18 +105,34 @@
 			<div>
 				<form id="search" action="searchresult.htm" method="get">
 					<input type="text" name="text" maxlength="64" placeholder="Search" />
-					<input type="submit" name="submit" value="Search" />
+					<input type="submit" onclick=" return opentable();" name="submit" value="Search" />
 					
 				</form>
 			</div>
 		</div>
 	</div>
+ <c:choose>
+  <c:when test="${empty listing}">
+  
+  
+  </c:when>
+  <c:otherwise>
+  
+  <div id="message" class=container>
+	<p> We found <strong style="color: orange;"><c:out value="${fn:length(listing)}"></c:out></strong> results matching your search! </p>
+	 
+	</div><br/>
+	
+	<div id="ajaxResult" class="container alert alert-success fade in" style="display: none">
+		
+	</div>
 	
 	
 	<div id="results">
 		<form>
-			<table class="table">
-				<tr>
+			<table class="table" style="border-bottom-style: ridge; outline-style: solid;border-right-color: orange; ">
+				<tr style="background-color: orange; font-size: medium;">
+					<td>Job Id</td>
 					<td>Company</td>
 					<td>Title</td>
 					<td>Description</td>
@@ -107,22 +140,122 @@
 					<td>Apply</td>
 				</tr>
 
-				<c:forEach var="item" items="${requestScope.listing}">
+				<c:forEach varStatus="loop" var="item" items="${requestScope.listing}">
 					<tr>
+						<td><c:out value="${item.id}"></c:out></td>
 						<td><c:out value="${item}"></c:out></td>
 						<td><c:out value="${item.title}"></c:out></td>
 						<td><textarea class="scrollabletextbox"><c:out value="${item.description}"></c:out></textarea></td>
 						<td><c:out value="${item.salary}"></c:out>$ / Month</td>
-						<td><a href="#"> Apply </a></td>
+						<td><input type="button" id="apply" class="apply" value="Apply"/></td>
 					</tr>
-				</c:forEach>
+				</c:forEach>				
 			</table>
+			<input type="hidden" id="userId" value="${sessionScope.user.id}"/>
 		</form>
 	</div>
+  
+  
+  </c:otherwise>
+ </c:choose>
+
+	
+	
 	
 
+<script type="text/javascript">
+ 
+ 
+
+var xmlHttp;
+var query = "";
+
+xmlHttp = GetXmlHttpObject();
+
+
+$('.apply').click(function (){
+	 var $row = $(this).closest("tr");
+	 var $applyButton = $row.find("#apply");
+	 var listId = $(this).closest("tr").find('td:eq(0)').text();
+	 var listTitle = $(this).closest("tr").find('td:eq(2)').text();
+	 var userId = document.getElementById("userId").value;
+	 //alert("Listing id is:" + listId +" " + "User Id is: " + userId );
+	 
+	query = "action=apply&listId=" + listId +"&userId=" + userId;
+	 
+	 jQuery.ajax({
+		
+	 	url: 'applyJob.htm?' + query,
+	 	success: function(result){
+	 		
+	 		if(jQuery.trim(result) == "SUCCESS"){
+	 			document.getElementById("ajaxResult").style.display = "block";
+	 			document.getElementById("ajaxResult").innerHTML = "Congratulations! You have sucessfully applied for the Job Position of : " + "<strong>"+listTitle+"</strong>";
+	 		
+	 		$row.css('background-color', 'orange');
+	 		$applyButton.attr('value', "Applied");
+	 		$applyButton.prop('disabled', true);
+	 		
+	 		} else {
+	 		
+	 		alert("Sorry something went wrong! Try again");	
+	 			
+	 		}
+	 		
+	 		
+	 	}
+	 });
+	 
+});
 
 
 
+// function applyJob(listingId, rowId){
+// 	 var $row = $(this).closest("tr");
+// 	 var $applyButton = $row.find("#apply");
+	 
+	 
+// 	 var row = rowId;
+// 	 var listId = listingId;
+// 	 var userId = document.getElementById("userId").value;
+// 	 //alert("Listing id is:" + listingId+" " + "User Id is: " + userId );
+	 
+// 	 query = "action=apply&listId=" + listId +"&userId=" + userId;
+	 
+// 	 jQuery.ajax({
+		
+// 	 	url: 'applyJob.htm?' + query,
+// 	 	success: function(result){
+// 	 		alert(result);
+// 	 		$row.css('background-color', 'green');
+// 	 		$applyButton.attr('value', "Applied");
+// 	 		$applyButton.prop('disabled', true);
+// 	 	}
+// 	 });
+	 
+// }
+
+function GetXmlHttpObject()
+{
+    var xmlHttp = null;
+    try
+    {
+        // Firefox, Opera 8.0+, Safari
+        xmlHttp = new XMLHttpRequest();
+    } catch (e)
+    {
+        // Internet Explorer
+        try
+        {
+            xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+        } catch (e)
+        {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+    }
+    return xmlHttp;
+}
+
+</script>
 </body>
 </html>

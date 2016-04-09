@@ -1,5 +1,7 @@
 package com.neu.lalit.servimp;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.neu.lalit.dao.CompanyDao;
 import com.neu.lalit.pojo.Company;
+import com.neu.lalit.pojo.Listing;
 import com.neu.lalit.service.CompanyService;
 
 @Service("companyService")
@@ -36,5 +39,7 @@ public class CompanyServiceImp implements CompanyService {
 	public Company getCompanybyEmail(String email) {
 		return companyDao.getByCompanyEmail(email);
 	}
+
+	
 
 }
