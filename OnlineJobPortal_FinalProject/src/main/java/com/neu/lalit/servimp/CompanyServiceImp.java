@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.neu.lalit.dao.CompanyDao;
+import com.neu.lalit.dto.JobApplication;
 import com.neu.lalit.pojo.Company;
 import com.neu.lalit.pojo.Listing;
 import com.neu.lalit.service.CompanyService;
@@ -38,6 +39,11 @@ public class CompanyServiceImp implements CompanyService {
 	@Override
 	public Company getCompanybyEmail(String email) {
 		return companyDao.getByCompanyEmail(email);
+	}
+
+	@Override
+	public List<JobApplication> getmyListing(Long compId) {
+		return companyDao.getMyListing(compId);
 	}
 
 	

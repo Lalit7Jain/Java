@@ -55,14 +55,6 @@
 	margin-left: 0px;
 }
 
-.btn {
-	height: 30px;
-	position: absolute;
-	right: 0;
-	top: 5px;
-	border-radius: 1px;
-}
-
 .scrollabletextbox {
     height:100px;
     width:800px;
@@ -94,6 +86,7 @@
 
 
 <body>
+<jsp:include page="usernav.jsp"></jsp:include>
 
 <div class=container>
 		<div class="row">
@@ -102,15 +95,20 @@
 				<c:out value="${sessionScope.user.firstname}"></c:out>
 				! Start your search here
 			</h2>
-			<div>
+			
+			<hr>
+			
+		</div>
+	</div>
+<div class=container>
+			 <div class="col-sm-12">
 				<form id="search" action="searchresult.htm" method="get">
-					<input type="text" name="text" maxlength="64" placeholder="Search" />
+					<input type="text" name="text" maxlength="64" placeholder="Search for Job's" />
 					<input type="submit" onclick=" return opentable();" name="submit" value="Search" />
 					
 				</form>
 			</div>
-		</div>
-	</div>
+</div>	
  <c:choose>
   <c:when test="${empty listing}">
   

@@ -2,6 +2,7 @@ package com.neu.lalit.daoimpl;
 
 
 import org.hibernate.Criteria;
+import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.dao.support.DataAccessUtils;
 import org.springframework.stereotype.Repository;
@@ -23,6 +24,11 @@ public class UseDaoImp extends GenericDaoImplementation<User, Long> implements U
 		
 		//Using DataAccessUtils spring API to get single result from the criteria list and casting to User type
 		return (User)DataAccessUtils.singleResult(criteria.list());
+	}
+
+	@Override
+	public Session getSessionNow() {
+		return this.getSession();
 	}
 	
 

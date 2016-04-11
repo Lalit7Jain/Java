@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.LockMode;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -95,6 +96,11 @@ public abstract class GenericDaoImplementation<T, ID extends Serializable> imple
 	    
 	    public void flush() {
 	    	sessionFactory.getCurrentSession().flush();
+	    	
+	    }
+	    
+	    public Session getSession(){
+	    	return sessionFactory.getCurrentSession();
 	    }
 	    
 	

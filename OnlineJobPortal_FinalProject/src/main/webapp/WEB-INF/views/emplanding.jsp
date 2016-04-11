@@ -48,14 +48,15 @@
 						Job Opening!</button>
 
 				</div>
-				<form>
+				
 				<div class="col-sm-6">
+				<form action="checkappstatus.htm" method="post">
 					<button class="btn btn-default btn-lg" id="checkstatus">Check
 						status of your application</button>
-
-				</div>
-				<input type="hidden" name="l" value="${sessionScope.company.id}">
+						<input type="hidden" name="compId" value="${sessionScope.company.id}">
 				</form>
+				</div>
+				
 			</div>
 			<script type="text/javascript">
 				$(document)
@@ -65,9 +66,6 @@
 										location.href = "postjob.htm";
 									};
 
-									document.getElementById("checkstatus").onclick = function() {
-										location.href = "checkappstatus.htm";
-									};
 
 								});
 			</script>

@@ -2,6 +2,7 @@ package com.neu.lalit.servimp;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,14 @@ public class UserServiceImp implements UserService {
 	public List<User> getAllUser() {
 		
 		return userdao.loadAll();
+		
 	}
+
+	@Override
+	public Session getSessionNow() {
+		
+		return userdao.getSessionNow();
+	}
+
 
 }

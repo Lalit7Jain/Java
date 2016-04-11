@@ -1,20 +1,26 @@
 package com.neu.lalit.dto;
 
+import java.math.BigInteger;
+import java.sql.Timestamp;
+
+
 public class JobApplication {
 
-	private String jobId;
+	private BigInteger jobId;
 	private String title;
-	private String createDate;
+	private Timestamp createDate;
 	private String firstname;
 	private String lastname;
 	private String path;
 	private String email;
 	private String phone;
-	private String registrationDate;
-	public String getJobId() {
+	private Timestamp registrationDate;
+	
+	
+	public BigInteger getJobId() {
 		return jobId;
 	}
-	public void setJobId(String jobId) {
+	public void setJobId(BigInteger jobId) {
 		this.jobId = jobId;
 	}
 	public String getTitle() {
@@ -23,12 +29,7 @@ public class JobApplication {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getCreateDate() {
-		return createDate;
-	}
-	public void setCreateDate(String createDate) {
-		this.createDate = createDate;
-	}
+	
 	public String getFirstname() {
 		return firstname;
 	}
@@ -59,10 +60,16 @@ public class JobApplication {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getRegistrationDate() {
+	public Timestamp getCreateDate() {
+		return createDate;
+	}
+	public void setCreateDate(Timestamp createDate) {
+		this.createDate = createDate;
+	}
+	public Timestamp getRegistrationDate() {
 		return registrationDate;
 	}
-	public void setRegistrationDate(String registrationDate) {
+	public void setRegistrationDate(Timestamp registrationDate) {
 		this.registrationDate = registrationDate;
 	}
 	
