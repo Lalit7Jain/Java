@@ -36,19 +36,38 @@
     			<li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign In </a></li>
     		</c:when>
     		<c:otherwise>
-    			<li><a href="#"><span class="glyphicon glyphicon-user"></span> Welcome, <c:out value="${sessionScope.user.firstname}"></c:out> </a></li>
-    			
-      			<li><a href="/lalit/user/<c:out value="${sessionScope.user.id}"></c:out>/update"><span class="glyphicon glyphicon-pencil"></span> Update Profile </a></li>
+    			<li><a href="#" ><span class="glyphicon glyphicon-user"></span> Welcome, <c:out value="${sessionScope.user.firstname}"></c:out> </a></li>    			
+      			<li><a href="user/<c:out value="${sessionScope.user.id}"></c:out>/update.htm"><span class="glyphicon glyphicon-pencil"></span> Update Profile </a></li>
       			<li><a href="#"><span class="glyphicon glyphicon-eye-open"></span> My Applications </a></li>
       			<li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>   		
     		
-    		</c:otherwise>
-    	
+    		</c:otherwise>    	
     	</c:choose>
       
     </ul>
   </div>
 </nav>
+<script type="text/javascript">
+$(document).ready(function(){
+    document.getElementById("update").onclick = function () {
+        location.href = "/lalit/user/<c:out value="${sessionScope.user.id}"></c:out>/update.htm";
+    };
+    
+    document.getElementById("signin").onclick = function () {
+        location.href = "signin.htm";
+    };
+    
+    document.getElementById("empsignin").onclick = function () {
+        location.href = "empsignin.htm";
+    };
+    
+    document.getElementById("empregister").onclick = function () {
+        location.href = "empregister.htm";
+    };
+    
+});
+</script>
+
   
 </body>
 </html>

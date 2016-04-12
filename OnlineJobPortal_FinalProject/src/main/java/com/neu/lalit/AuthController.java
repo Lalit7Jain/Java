@@ -35,15 +35,7 @@ public class AuthController {
 		
 		return mav;
 	}
-	
-	@RequestMapping(value = "/user/{id}/update.htm", method = RequestMethod.GET)
-	public ModelAndView userUpdate(@PathVariable ("id") Long id){
-		ModelAndView mav = null;
-		User user = userservice.getById(id);
-		mav = new ModelAndView("userupdateform","userupdate",user);
-		
-		return mav;
-	}
+
 	
 	
 }

@@ -17,10 +17,9 @@
 <body>
 <c:choose>
 
-		<c:when test="${userupdate}">
+		<c:when test="${!(userupdate == null)}">
 			<div class=container>
-				<form:form action="user/update" commandName="userupdate"
-					method="post" enctype='multipart/form-data'>
+				<form:form commandName="userupdate" method="post" enctype='multipart/form-data'>
 					<hr>
 					<div class="jumbotron text-center">
 						<h> Update profile </h>
@@ -31,10 +30,28 @@
 							<td><form:input path="email" size="30" /> <font color="red"><form:errors
 										path="email" /></font></td>
 						</tr>
+						
+						<tr>
+							<td>First Name:</td>
+							<td><form:input path="firstname" size="30" /> <font
+								color="red"><form:errors path="firstname" /></font></td>
+						</tr>
+
+						<tr>
+							<td>Last Name:</td>
+							<td><form:input path="lastname" size="30" /> <font
+								color="red"><form:errors path="lastname" /></font></td>
+						</tr>
+						
+						<tr>
+							<td>Password:</td>
+							<td><form:password path="password" size="30" value="${userupdate.password}"/> <font
+								color="red"><form:errors path="password" /></font></td>
+						</tr>
 
 						<tr>
 							<td>Title</td>
-							<td><form:select path="title" id="title" disabled="true">
+							<td><form:select path="title" id="title">
 									<option>Please Select</option>
 									<option>Mr</option>
 									<option>Ms</option>
@@ -45,17 +62,7 @@
 								</form:select></td>
 						</tr>
 
-						<tr>
-							<td>First Name:</td>
-							<td><form:input path="firstName" size="30" /> <font
-								color="red"><form:errors path="firstName" /></font></td>
-						</tr>
-
-						<tr>
-							<td>Last Name:</td>
-							<td><form:input path="lastName" size="30" /> <font
-								color="red"><form:errors path="lastName" /></font></td>
-						</tr>
+						
 
 						<tr>
 							<td>Phone Number:</td>
@@ -65,12 +72,18 @@
 
 						
 						<tr>
-							<td colspan="2"><input type="submit" value="Register" /></td>
-							<td colspan="2"><a href="/lalit">Back to home</a></td>
+							<td colspan="2"><input type="submit" value="Update" /></td>
+							<td colspan="2"><a href="/lalit/signin.htm">Back to Search</a></td>
 						</tr>
 					</table>
 
 				</form:form>
+				</div>
+		</c:when>
+		<c:when test="${!(message == null)}">
+				<div class="container">
+				 <h3> Your profile is been updated successfully </h3>
+				 <a href="/lalit/signin.htm" > Sign In </a>
 				</div>
 		</c:when>
 		<c:otherwise>

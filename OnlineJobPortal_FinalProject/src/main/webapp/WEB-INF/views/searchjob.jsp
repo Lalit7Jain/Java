@@ -88,17 +88,16 @@
 <body>
 <jsp:include page="usernav.jsp"></jsp:include>
 
-<div class=container>
-		<div class="row">
+    <div class=container>
+		<div class="col-sm-6">
 			<h2>
 				Hi
 				<c:out value="${sessionScope.user.firstname}"></c:out>
 				! Start your search here
 			</h2>
 			
-			<hr>
-			
 		</div>
+		
 	</div>
 <div class=container>
 			 <div class="col-sm-12">
