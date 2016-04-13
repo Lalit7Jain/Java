@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
 import org.springframework.stereotype.Repository;
@@ -20,7 +21,7 @@ public class ListingDaoImplementation extends GenericDaoImplementation<Listing, 
 		List<Listing> newList = new ArrayList<Listing>();
 		Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(persistentClass);
 
-		criteria.add(Restrictions.ilike("title", "%key%"));
+		criteria.add(Restrictions.ilike("title", "%" +key+  "%", MatchMode.ANYWHERE));
 		newList = criteria.list();
 		return newList;
 

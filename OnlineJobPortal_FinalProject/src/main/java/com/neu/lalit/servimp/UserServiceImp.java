@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.neu.lalit.dao.UserDao;
+import com.neu.lalit.dto.UserApplication;
 import com.neu.lalit.pojo.User;
 import com.neu.lalit.service.UserService;
 
@@ -55,6 +56,12 @@ public class UserServiceImp implements UserService {
 	public Session getSessionNow() {
 		
 		return userdao.getSessionNow();
+	}
+
+	@Override
+	public List<UserApplication> myApplication(Long userId) {
+		
+		return userdao.myApplication(userId);
 	}
 
 
