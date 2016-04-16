@@ -44,7 +44,8 @@ public class SearchController {
 			mav = new ModelAndView("searchjob", "user", user);
 		} else {
 			System.out.println("********* Went into list");
-			List<Listing> listingList = listingservice.getListing();
+			//List<Listing> listingList = listingservice.getListing();
+			List<Listing> listingList = listingservice.searchListing(key);
 			
 			mav = new ModelAndView("searchjob", "listing", listingList);
 		}
