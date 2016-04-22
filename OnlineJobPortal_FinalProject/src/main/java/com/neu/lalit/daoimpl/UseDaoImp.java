@@ -40,25 +40,26 @@ public class UseDaoImp extends GenericDaoImplementation<User, Long> implements U
 	@Override
 	public List<UserApplication> myApplication(Long userId) {
 		List<UserApplication> listings = new ArrayList<UserApplication>();
-		String querystring = "select c.name, l.id, l.title, l.createDate, l.salary"
-				+ "From user u"
-				+ "Inner Join application a"
-				+ "on a.userId = u.id"
-				+ "inner join listing l"
-				+ "on a.listingId = l.id"
-				+ "inner join company c"
-				+ "on l.compId = c.id"
+		String querystring = "select a.id as AppId, c.name, l.id, l.title, l.createDate, l.salary "
+				+ "From user u "
+				+ "Inner Join application a "
+				+ "on a.userId = u.id "
+				+ "inner join listing l "
+				+ "on a.listingId = l.id "
+				+ "inner join company c "
+				+ "on l.compId = c.id "
 				+ "where u.id = " + userId;
 		
 		List list = this.sessionFactory.getCurrentSession().createSQLQuery(querystring).list();
 		for(Object o : list){
 			 UserApplication japp = new UserApplication();
 			 Object[] obj = (Object[])o;
-			 japp.setName((String)obj[0]) ;
-			 japp.setJobId((BigInteger) obj[1]);
-			 japp.setTitle((String) obj[2]);
-			 japp.setCreateDate((Timestamp) obj[3]);
-			 japp.setSalary((Integer) obj[4]);
+			 japp.setAppId((BigInteger) obj[0]);
+			 japp.setName((String)obj[1]) ;
+			 japp.setJobId((BigInteger) obj[2]);
+			 japp.setTitle((String) obj[3]);
+			 japp.setCreateDate((Timestamp) obj[4]);
+			 japp.setSalary((Integer) obj[5]);
 			 listings.add(japp);			
 		}
 		return listings;

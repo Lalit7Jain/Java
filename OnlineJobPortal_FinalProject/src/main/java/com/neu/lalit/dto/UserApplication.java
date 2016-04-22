@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 
 public class UserApplication {
 
+	private BigInteger appId;
 	private BigInteger jobId;
 	private String name;
 	private Timestamp createDate;
@@ -39,6 +40,12 @@ public class UserApplication {
 	}
 	public void setSalary(Integer salary) {
 		this.salary = salary;
+	}
+	public BigInteger getAppId() {
+		return appId;
+	}
+	public void setAppId(BigInteger appId) {
+		this.appId = appId;
 	}
 	
 	

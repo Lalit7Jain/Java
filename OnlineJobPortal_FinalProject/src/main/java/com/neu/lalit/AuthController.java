@@ -35,7 +35,38 @@ public class AuthController {
 		
 		return mav;
 	}
-
+	
+	@RequestMapping(value = "/userlanding.htm", method = RequestMethod.GET)
+	public ModelAndView userLanding(HttpServletRequest request){
+		ModelAndView mav = null;
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute("user");
+		if(user == null){
+			mav = new ModelAndView("userlanding");
+		} else {
+			mav = new ModelAndView("userlanding","user", user);
+		}
+		
+		return mav;
+	}
+	
+	@RequestMapping(value = "/user/{id}/logout.htm")
+	public ModelAndView logoutUser(@PathVariable("id") Long userId,  HttpServletRequest request){
+		ModelAndView mav = null;
+		HttpSession session = request.getSession();
+		
+		User u = userservice.getById(userId);
+		User u2 = (User)session.getAttribute("user");
+		if(u.getId().longValue() == u2.getId().longValue()){
+			session.invalidate();
+			mav = new ModelAndView("home");		
+			
+		}		
+		
+		return mav;
+		
+		
+	}
 	
 	
 }

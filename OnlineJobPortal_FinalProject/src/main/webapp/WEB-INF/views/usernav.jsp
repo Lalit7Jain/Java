@@ -18,7 +18,7 @@
       <a class="navbar-brand" href="/lalit">Online Job Portal</a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="/lalit">Home</a></li>
+      <li class="active"><a href="/lalit/userlanding.htm">Home</a></li>
 <!--       <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a> -->
 <!--         <ul class="dropdown-menu"> -->
 <!--           <li><a href="#">Page 1-1</a></li> -->
@@ -38,8 +38,8 @@
     		<c:otherwise>
     			<li><a href="#" ><span class="glyphicon glyphicon-user"></span> Welcome, <c:out value="${sessionScope.user.firstname}"></c:out> </a></li>    			
       			<li><a href="user/<c:out value="${sessionScope.user.id}"></c:out>/update.htm"><span class="glyphicon glyphicon-pencil"></span> Update Profile </a></li>
-      			<li><a href="#"><span class="glyphicon glyphicon-eye-open"></span> My Applications </a></li>
-      			<li><a href="#"><span class="glyphicon glyphicon-off"></span> Logout</a></li>   		
+      			<li><a href="user/<c:out value="${sessionScope.user.id}"></c:out>/myappliedjob.htm"><span class="glyphicon glyphicon-eye-open"></span> My Applications </a></li>
+      			<li><a href="user/<c:out value="${sessionScope.user.id}"></c:out>/logout.htm"><span class="glyphicon glyphicon-off"></span> Logout</a></li>   		
     		
     		</c:otherwise>    	
     	</c:choose>
@@ -47,11 +47,9 @@
     </ul>
   </div>
 </nav>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 $(document).ready(function(){
-    document.getElementById("update").onclick = function () {
-        location.href = "/lalit/user/<c:out value="${sessionScope.user.id}"></c:out>/update.htm";
-    };
+   
     
     document.getElementById("signin").onclick = function () {
         location.href = "signin.htm";
@@ -66,7 +64,7 @@ $(document).ready(function(){
     };
     
 });
-</script>
+</script>  -->
 
   
 </body>

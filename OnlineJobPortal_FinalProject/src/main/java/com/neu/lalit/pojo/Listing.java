@@ -13,6 +13,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.Hibernate;
+import org.hibernate.Session;
+
 
 
 @Entity
@@ -155,6 +158,8 @@ public class Listing implements Serializable {
 	public void setApplications(List<Application> applications) {
 		this.applications = applications;
 	}
+
+		
 //
 		
 

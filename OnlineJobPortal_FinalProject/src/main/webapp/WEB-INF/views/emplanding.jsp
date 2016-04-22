@@ -16,7 +16,7 @@
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
-<title>Employer Landing</title>
+<title>Employer Home</title>
 </head>
 <body>
 	<c:choose>

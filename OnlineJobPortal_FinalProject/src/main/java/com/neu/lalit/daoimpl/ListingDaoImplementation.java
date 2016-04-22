@@ -1,7 +1,10 @@
 package com.neu.lalit.daoimpl;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.MatchMode;
@@ -18,11 +21,13 @@ public class ListingDaoImplementation extends GenericDaoImplementation<Listing, 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Listing> searchListing(String key) {
+	
 		List<Listing> newList = new ArrayList<Listing>();
 		Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(persistentClass);
 
 		criteria.add(Restrictions.ilike("title", "%" +key+  "%", MatchMode.ANYWHERE));
 		newList = criteria.list();
+		
 		return newList;
 
 	}

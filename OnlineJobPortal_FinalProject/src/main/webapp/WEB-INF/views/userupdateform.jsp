@@ -73,7 +73,7 @@
 						
 						<tr>
 							<td colspan="2"><input type="submit" value="Update" /></td>
-							<td colspan="2"><a href="/lalit/signin.htm">Back to Search</a></td>
+							<td colspan="2"><a href="/lalit/userlanding.htm">Back to Search</a></td>
 						</tr>
 					</table>
 
@@ -83,7 +83,7 @@
 		<c:when test="${!(message == null)}">
 				<div class="container">
 				 <h3> Your profile is been updated successfully </h3>
-				 <a href="/lalit/signin.htm" > Sign In </a>
+				 <a href="userlanding.htm" > Back to home  </a>
 				</div>
 		</c:when>
 		<c:otherwise>

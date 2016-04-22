@@ -110,7 +110,11 @@
 </div>	
  <c:choose>
   <c:when test="${empty listing}">
-  
+  	
+  	<div id="message" class=container>
+	<p> Sorry, we did not find any results matching your search! </p>
+	 
+	</div><br/>
   
   </c:when>
   <c:otherwise>

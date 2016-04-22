@@ -11,4 +11,6 @@ import com.neu.lalit.pojo.Application;
 public class ApplicationDaoImplementation extends GenericDaoImplementation<Application, Long> implements ApplicationDao{
 
 	
+	
+	
 }

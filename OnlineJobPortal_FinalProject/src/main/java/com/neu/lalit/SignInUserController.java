@@ -58,7 +58,7 @@ public class SignInUserController {
 		if (!(newuser == null)) {
 			if (newuser.getEmail().equals(user.getEmail()) && newuser.getPassword().equals(user.getPassword())) {
 				httpSession.setAttribute("user", newuser);
-				model = new ModelAndView("searchjob");
+				model = new ModelAndView("userlanding");
 				model.addObject("userLogged",newuser);
 				return model;
 //				model.addAttribute("userLogged", newuser);

@@ -9,5 +9,7 @@ public interface ApplicationService {
 	public Long save(Application application);
 	public Application getById(Long id);
 	public List<Application> getApplication();
+
+	public void deleteApplication(Long id);
 	
 }

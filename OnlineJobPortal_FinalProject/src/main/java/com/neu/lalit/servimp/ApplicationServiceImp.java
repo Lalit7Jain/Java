@@ -32,4 +32,10 @@ public class ApplicationServiceImp implements ApplicationService {
 		return applicationdao.loadAll();
 	}
 
+	@Override
+	public void deleteApplication(Long id) {
+		applicationdao.deleteById(id);
+		
+	}
+
 }
