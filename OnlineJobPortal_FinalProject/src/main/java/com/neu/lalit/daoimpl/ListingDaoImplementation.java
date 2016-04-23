@@ -31,5 +31,15 @@ public class ListingDaoImplementation extends GenericDaoImplementation<Listing, 
 		return newList;
 
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Listing> companyListing(Long id) {
+		Criteria criteria = this.sessionFactory.getCurrentSession().createCriteria(persistentClass);
+		Criteria cmpCrit = criteria.createCriteria("company");
+		cmpCrit.add(Restrictions.eq("id", id));
+		List<Listing> companyListings = criteria.list();
+		return companyListings;
+	}
 
 }

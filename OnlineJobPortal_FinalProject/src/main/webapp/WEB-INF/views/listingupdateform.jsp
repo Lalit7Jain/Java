@@ -1,38 +1,43 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link href="http://fonts.googleapis.com/css?family=Montserrat"
-	rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Lato"
-	rel="stylesheet" type="text/css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title> Update listing </title>
 </head>
 <body>
 <jsp:include page="companynav.jsp"></jsp:include>
-	<c:choose>
-	<c:when test="${empty listingname}">
-	<div class=container>
-		<form:form action="postjob.htm" commandName="companyListing"
-			method="post">
-			<hr>
-			<div class="jumbotron text-center">
-				<h> Post an add of your job description, and will find the right candidates for you</h>
-			</div>
-			<table class=table>
-				<tr>
-					<td>Company Name:</td>
-					<td><form:input path="name" value="${sessionScope.company.name}" disabled="true" size="30" /> <font color="red"><form:errors
-								path="name" /></font></td>
-				</tr>
+<c:choose>
 
+<c:when test="${!(message == null)}">
+				<div class="container">
+				 <h3> Your listing is been updated successfully </h3>
+				 <a href="/lalit/emplanding.htm" > Back to home  </a>
+				</div>
+		</c:when>
+		<c:when test="${empty listingupdate}">
+<div class=container>
+ <p> Something went wrong! Could not retrieve listing </p>
+</div>
+
+</c:when>
+<c:otherwise>
+<div class=container>
+				<form:form commandName="listingupdate" method="post">
+					<hr>
+					<div class="jumbotron text-center">
+						<h> Update Listing </h>
+					</div>
+					<table class="table">
+				<tr>
+					<td>Listing Id:</td>
+					<td><form:input path="id" size="30" disabled="true" /> <font color="red"><form:errors
+								path="id" /></font></td>
+				</tr>
+					
 				<tr>
 					<td>Job Title:</td>
 					<td><form:input path="title" size="30" /> <font color="red"><form:errors
@@ -87,26 +92,18 @@
 				</tr>
 
 				<tr>
-					<td colspan="2"><input type="submit" value="Register" /></td>
-					<td colspan="2"><a href="/lalit">Back to home</a></td>
+					<td colspan="2"><input type="submit" value="Update" /></td>
+					<td colspan="2"><a href="/lalit/emplanding.htm">Back to home</a></td>
 				</tr>
-			</table>
+					</table>
 
-		</form:form>
-	</div>
-	</c:when>
-	<c:otherwise>
-	<div class=container>
-				<div class="jumbotron text-center">
-					<p> Thank you! You have successfully posted a Listing for: </p><b><c:out value="${listingname.title}"></c:out></b>
-					<h> Now, its our duty to get you the right candidates which matches your requirements</h>
-					
-					<a href="emplanding.htm" > You can check the status of application's here </a>
-					
+				</form:form>
 				</div>
-			</div>
-	
-	</c:otherwise>
+
+
+
+</c:otherwise>
 </c:choose>
+
 </body>
 </html>

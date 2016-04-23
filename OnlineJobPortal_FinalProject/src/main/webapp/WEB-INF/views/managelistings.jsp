@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 <script
@@ -15,30 +16,43 @@
 	rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=Lato"
 	rel="stylesheet" type="text/css">
+<style>
 
-<title> Application status here! </title>
+.alert-success {
+	color: #3c763d;
+	background-color: #dff0d8;
+	border-color: #d6e9c6;
+}
+
+.alert {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.fade {
+	opacity: 0;
+	-webkit-transition: opacity .15s linear;
+	-o-transition: opacity .15s linear;
+	transition: opacity .15s linear;
+}
+</style>
+<title> Manage Listings! </title>
 </head>
 <body>
- <jsp:include page="companynav.jsp"></jsp:include>
- <fieldset>
- <div class=container>
-  <div class="row">
-			<h2>
-				
-				<p>Hello <c:out value="${sessionScope.company.name}"></c:out> . Job search application status below</p>		
-			</h2>
-			<hr>
-			</div>
- 
- </div><br/><br/>
+<jsp:include page="companynav.jsp"></jsp:include>
+
+<div class="container">
+
  </fieldset>
  <c:choose>
- <c:when test="${empty listofapplication}">
+ <c:when test="${empty managelistings}">
  <fieldset>
  <div class=container>
   <div class="row">
 			<h2>
-				<p> You do not have any application's now </p>	
+				<p> You have not posted any listings yet </p>	
 				<a href="postjob.htm"> Create one now! </a>	
 			</h2>
 			</div>
@@ -62,33 +76,44 @@
             </form>
             <br/><br/>
         </div>
+        <div class="col-md-4"></div>
+		<div class="col-md-2">
+						<input type="button" class="refresh" value="Refresh" onClick="window.location.reload()"/>
+		</div>
+					
+		<div class="col-md-12">
+				<div id="ajaxResult" class="container alert alert-success fade in"
+						style="display: none"></div>
+					
+		</div>
+        
 		<div class="col-md-12">
     	 <table class="table table-list-search">
                     <thead style="color: white; background: black;">
                         <tr>
-                            <td>Job Id</td>
+                    <td>Listing Id</td>
 					<td>Title</td>
-					<td>Created Date</td>
-					<td>First Name</td>
-					<td>Last Name</td>
-					<td>Resume Path</td>
-					<td>Email</td>
-					<td>Phone</td>
-					<td>Registration Date</td>
-                        </tr>
+					<td>Description</td>
+					<td>Salary</td>
+					<td>Contact Email</td>
+					<td>Contact Phone </td>
+					<td>Type </td>
+					<td>Update</td>
+					<td>Delete</td>
+					   </tr>
                     </thead>
                     <tbody>
-                        <c:forEach varStatus="loop" var="item" items="${requestScope.listofapplication}">
+                        <c:forEach varStatus="loop" var="item" items="${requestScope.managelistings}">
 					<tr>
-						<td><c:out value="${item.jobId}"></c:out></td>
+						<td><c:out value="${item.id}"></c:out></td>
 						<td><c:out value="${item.title}"></c:out></td>
-						<td><c:out value="${item.createDate}"></c:out></td>
-						<td><c:out value="${item.firstname}"></c:out></td>
-						<td><c:out value="${item.lastname}"></c:out></td>
-						<td><c:out value="${item.path}"></c:out></td>
-						<td><c:out value="${item.email}"></c:out></td>
-						<td><c:out value="${item.phone}"></c:out></td>						
-						<td><c:out value="${item.registrationDate}"></c:out></td>
+						<td><c:out value="${item.description}"></c:out></td>
+						<td><c:out value="${item.salary}"></c:out></td>
+						<td><c:out value="${item.contactEmail}"></c:out></td>
+						<td><c:out value="${item.contactPhone}"></c:out></td>
+						<td><c:out value="${item.type}"></c:out></td>
+						<td><input type="button" id="updateListing" class="updateListing" value="Update"/></td>
+						<td><input type="button" id="delete" class="delete"	value="Delete" /></td>
 					</tr>
 				</c:forEach>
                     </tbody>
@@ -149,6 +174,60 @@
 	    });
 	});
  </script>
-  <jsp:include page="footer.jsp"></jsp:include>
+ <script type="text/javascript">
+ 
+ $('.delete').click(function() {
+		var c = confirm("Are you sure you want to remove the listing?");
+		if(c == true){
+			var $row = $(this).closest("tr");
+			var $withdrawButton = $row.find("#delete");
+			var listId = $(this).closest("tr").find('td:eq(0)').text();		
+
+			query = "listId=" + listId;
+
+			jQuery
+					.ajax({
+
+						url : '/lalit/company/removelisting.htm?' + query,
+						success : function(result) {
+
+							if (jQuery.trim(result) == "SUCCESS") {
+								document.getElementById("ajaxResult").style.display = "block";
+								document.getElementById("ajaxResult").innerHTML = "You have sucessfully removed the listing with ID: "
+										+ "<strong>"
+										+ listId
+										+ "</strong>";
+
+								$row.css('background-color','orange');
+								$withdrawButton.attr('value',"Removed");
+								$withdrawButton.prop('disabled',true);
+
+							} else {
+
+								alert("Sorry something went wrong! Try again");
+
+							}
+
+						}
+					});
+			
+		}
+	});
+ 
+ </script>
+ <script type="text/javascript">
+ 
+ $('.updateListing').click(function() {
+	 var listId = $(this).closest("tr").find('td:eq(0)').text();
+		//query = "listId=" + listId;
+		location.href = "company/" + listId + "/updatelisting.htm";
+ });
+				
+</script>
+<jsp:include page="footer.jsp"></jsp:include>
+
+</div>
+
+
 </body>
 </html>

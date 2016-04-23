@@ -41,13 +41,13 @@ public class SearchController {
 			HttpSession session = request.getSession();
 			User user = (User) session.getAttribute("user");
 			request.setAttribute("message", "You must enter values to search");
-			mav = new ModelAndView("searchjob", "user", user);
+			mav = new ModelAndView("userlanding", "user", user);
 		} else {
 			System.out.println("********* Went into list");
 			//List<Listing> listingList = listingservice.getListing();
 			List<Listing> listingList = listingservice.searchListing(key);
 			
-			mav = new ModelAndView("searchjob", "listing", listingList);
+			mav = new ModelAndView("userlanding", "listing", listingList);
 		}
 
 		return mav;

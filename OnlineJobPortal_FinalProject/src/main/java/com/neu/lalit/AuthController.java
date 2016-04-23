@@ -52,6 +52,7 @@ public class AuthController {
 	
 	@RequestMapping(value = "/user/{id}/logout.htm")
 	public ModelAndView logoutUser(@PathVariable("id") Long userId,  HttpServletRequest request){
+		
 		ModelAndView mav = null;
 		HttpSession session = request.getSession();
 		
@@ -63,10 +64,8 @@ public class AuthController {
 			
 		}		
 		
-		return mav;
+		return mav;	
 		
-		
-	}
-	
+	}	
 	
 }

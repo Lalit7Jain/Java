@@ -43,4 +43,16 @@ public class ListingServiceImp implements ListingService {
 		return listingDao.searchListing(key);
 	}
 
+	@Override
+	public List<Listing> companyListing(Long id) {		
+		return listingDao.companyListing(id);
+		
+	}
+
+	@Override
+	public void deleteListing(Long id) {
+		listingDao.deleteById(id);
+		
+	}
+
 }

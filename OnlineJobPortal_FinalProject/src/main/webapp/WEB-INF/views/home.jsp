@@ -211,8 +211,7 @@
         <li><a href="#services">SERVICES</a></li>
         <li><a href="#employer">EMPLOYER</a></li>
         <li><a href="#pricing">PRICING</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-        <li><a href="register.htm">REGISTER</a></li>
+        <li><a href="#contact">CONTACT</a></li>      
       </ul>
     </div>
   </div>
@@ -244,10 +243,10 @@
 <div id="about" class="container-fluid">
   <div class="row">
     <div class="col-sm-8">
-      <h2>About Company Page</h2><br>
-      <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <br><button class="btn btn-default btn-lg">Get in Touch</button>
+      <h2>About Us </h2><br>
+      <h4>Driving Recruiting Acceleration with the Leading Recruiting Platform.</h4><br>
+      <p>We deeply believe that talent is the most important factor that fuels growth for both emerging and enterprise companies, making it the ultimate competitive advantage. Recruiting quality talent is not only mission critical, but its also tougher than ever before, according to our most recent Recruiter Nation Survey. Major shifts in the talent market are forcing organizations to get more creative, innovative, and move faster to recruit top talent and build winning teams.</p>
+      
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-signal logo"></span>
@@ -262,9 +261,8 @@
     </div>
     <div class="col-sm-8">
       <h2>Our Values</h2><br>
-      <h4><strong>MISSION:</strong> Our mission lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</h4><br>
-      <p><strong>VISION:</strong> Our vision Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <h4><strong>MISSION:</strong>Were laser focused on helping our customers recruit the best people for the job people that are qualified, motivated, and contribute to the companys culture and success. And, we make the entire process from sourcing to onboarding as easy, efficient, and effective as possible. The industry experts agree. According to Appcast, Jobvite has the lowest cost-per-applicant and the highest click-to-apply rate in the industry and Forrester recently named us a leader in the Forrester Wave on Talent Acquisition.</h4><br>
+      <p><strong>VISION:</strong>With a decade long focus on recruiting software, Jobvite is leading the industry with a comprehensive and analytics-driven recruiting platform that increases recruiting velocity for thousands of customers in 160 countries. We also have innovation in our DNA; we were the first to deliver on social recruiting, native video interviewing, advanced scheduling, and a recruiting CRM. Our job seeker database with data from over 49+M candidate fuels insights and informs best practices. And, we top it all off with an award winning customer success team.</p>
     </div>
   </div>
 </div>
@@ -278,17 +276,17 @@
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-off logo-small"></span>
       <h4>POWER</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p> Power to apply freely </p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-heart logo-small"></span>
       <h4>LOVE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p> Love your job </p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-lock logo-small"></span>
       <h4>JOB DONE</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p> Getting you the perfect job </p>
     </div>
   </div>
   <br><br>
@@ -296,17 +294,17 @@
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-leaf logo-small"></span>
       <h4>GREEN</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p> Paper friendly </p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-certificate logo-small"></span>
       <h4>CERTIFIED</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p> ISO 1800:9001 certified </p>
     </div>
     <div class="col-sm-4">
       <span class="glyphicon glyphicon-wrench logo-small"></span>
       <h4 style="color:#303030;">HARD WORK</h4>
-      <p>Lorem ipsum dolor sit amet..</p>
+      <p> And bit of hard work from you </p>
     </div>
   </div>
 </div>
@@ -378,68 +376,9 @@
 <div id="pricing" class="container-fluid">
   <div class="text-center">
     <h2>Pricing</h2>
-    <h4>Choose a payment plan that works for you</h4>
+    <h4> We offer free services to our customer and jobseeker both </h4>
   </div>
-  <div class="row slideanim">
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h1>Basic</h1>
-        </div>
-        <div class="panel-body">
-          <p><strong>20</strong> Lorem</p>
-          <p><strong>15</strong> Ipsum</p>
-          <p><strong>5</strong> Dolor</p>
-          <p><strong>2</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
-        </div>
-        <div class="panel-footer">
-          <h3>$19</h3>
-          <h4>per month</h4>
-          <button class="btn btn-lg">Sign Up</button>
-        </div>
-      </div>      
-    </div>     
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h1>Pro</h1>
-        </div>
-        <div class="panel-body">
-          <p><strong>50</strong> Lorem</p>
-          <p><strong>25</strong> Ipsum</p>
-          <p><strong>10</strong> Dolor</p>
-          <p><strong>5</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
-        </div>
-        <div class="panel-footer">
-          <h3>$29</h3>
-          <h4>per month</h4>
-          <button class="btn btn-lg">Sign Up</button>
-        </div>
-      </div>      
-    </div>       
-    <div class="col-sm-4 col-xs-12">
-      <div class="panel panel-default text-center">
-        <div class="panel-heading">
-          <h1>Premium</h1>
-        </div>
-        <div class="panel-body">
-          <p><strong>100</strong> Lorem</p>
-          <p><strong>50</strong> Ipsum</p>
-          <p><strong>25</strong> Dolor</p>
-          <p><strong>10</strong> Sit</p>
-          <p><strong>Endless</strong> Amet</p>
-        </div>
-        <div class="panel-footer">
-          <h3>$49</h3>
-          <h4>per month</h4>
-          <button class="btn btn-lg">Sign Up</button>
-        </div>
-      </div>      
-    </div>    
   </div>
-</div>
 
 <!-- Container (Contact Section) -->
 <div id="contact" class="container-fluid bg-grey">
@@ -448,25 +387,11 @@
     <div class="col-sm-5">
       <p>Contact us and we'll get back to you within 24 hours.</p>
       <p><span class="glyphicon glyphicon-map-marker"></span> Chicago, US</p>
-      <p><span class="glyphicon glyphicon-phone"></span> +00 1515151515</p>
-      <p><span class="glyphicon glyphicon-envelope"></span> myemail@something.com</p>	   
+      <p><span class="glyphicon glyphicon-phone"></span> +857 308 7698</p>
+      <p><span class="glyphicon glyphicon-envelope"></span> lalit.7.jain@gmail.com </p>	   
     </div>
-    <div class="col-sm-7 slideanim">
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-        </div>
-      </div>
-      <textarea class="form-control" id="comments" name="comments" placeholder="Comment" rows="5"></textarea><br>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" type="submit">Send</button>
-        </div>
-      </div>	
-    </div>
+    	
+   
   </div>
 </div>
 
@@ -523,7 +448,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
-  <p>Bootstrap Theme Made By <a href="http://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>		
+ 	
 </footer>
 
 <script>
@@ -560,6 +485,7 @@ $(document).ready(function(){
   });
 })
 </script>
+<jsp:include page="footer.jsp"></jsp:include>
 
 </body>
 </html>

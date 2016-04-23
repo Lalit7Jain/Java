@@ -18,18 +18,18 @@
       <a class="navbar-brand" href="/lalit">Online Job Portal</a>
     </div>
     <ul class="nav navbar-nav">.
-      <li class="active"><a href="/lalit/userlanding.htm">Home</a></li>
+      <li class="active"><a href="/lalit/emplanding.htm">Home</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
     	<c:choose>
-    		<c:when test="${empty user}">
-    			<li><a href="/lalit/register"><span class="glyphicon glyphicon-user"></span> Register </a></li>
-    			<li><a href="/lalit/signin"><span class="glyphicon glyphicon-user"></span> Sign In </a></li>
+    		<c:when test="${empty company}">
+    			<li><a href="/lalit/empempregister.htm"><span class="glyphicon glyphicon-user"></span> Register </a></li>
+    			<li><a href="/lalit/empsignin"><span class="glyphicon glyphicon-user"></span> Sign In </a></li>
     		</c:when>
     		<c:otherwise>
-    			<li><a href="#" ><span class="glyphicon glyphicon-user"></span> Welcome, <c:out value="${sessionScope.user.firstname}"></c:out> </a></li>    			
-      			<li><a href="user/<c:out value="${sessionScope.user.id}"></c:out>/update.htm"><span class="glyphicon glyphicon-pencil"></span> Update Profile </a></li>
-      			<li><a href="user/<c:out value="${sessionScope.user.id}"></c:out>/myappliedjob.htm"><span class="glyphicon glyphicon-eye-open"></span> My Applications </a></li>
+    			<li><a href="#" ><span class="glyphicon glyphicon-user"></span> Welcome, <c:out value="${sessionScope.company.name}"></c:out> </a></li>    			
+      			<li><a href="company/<c:out value="${sessionScope.company.id}"></c:out>/update.htm"><span class="glyphicon glyphicon-pencil"></span> Update Account </a></li>
+      			
       			<li><a href="user/<c:out value="${sessionScope.user.id}"></c:out>/logout.htm"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>   		
     		
     		</c:otherwise>    	

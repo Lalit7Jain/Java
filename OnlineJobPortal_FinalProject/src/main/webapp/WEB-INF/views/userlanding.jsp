@@ -143,13 +143,14 @@
 
 					<div id="ajaxResult" class="container alert alert-success fade in"
 						style="display: none"></div>
-
-
+					
+					
+					<div class="col-md-12">
 					<div id="results">
 						<form>
-							<table class="table"
-								style="border-bottom-style: ridge; outline-style: solid; border-right-color: orange;">
-								<tr style="background-color: orange; font-size: medium;">
+							<table class="table">
+							<thead  style="color: white; background: black;">
+								<tr>
 									<td>Job Id</td>
 									<td>Company</td>
 									<td>Title</td>
@@ -157,7 +158,7 @@
 									<td>Salary</td>
 									<td>Apply</td>
 								</tr>
-
+								</thead>
 								<c:forEach varStatus="loop" var="item"
 									items="${requestScope.listing}">
 									<tr>
@@ -175,7 +176,7 @@
 							<input type="hidden" id="userId" value="${sessionScope.user.id}" />
 						</form>
 					</div>
-
+					</div>
 
 				</c:otherwise>
 			</c:choose>

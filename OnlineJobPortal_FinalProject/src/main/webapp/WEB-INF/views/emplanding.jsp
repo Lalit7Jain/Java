@@ -15,10 +15,14 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-
+    <link href="<c:url value="/resources/css/jquery.jqplot.min.css" />" rel="stylesheet">
+    <script src="<c:url value="/resources/js/jquery.jqplot.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jqplot.barRenderer.js" />"></script>
+    <script src="<c:url value="/resources/js/jqplot.categoryAxisRenderer.js" />"></script>
 <title>Employer Home</title>
 </head>
 <body>
+<jsp:include page="companynav.jsp"></jsp:include>
 	<c:choose>
 		<c:when test="${empty sessionScope.company}">
 			<div class=container>
@@ -43,22 +47,32 @@
 			</div>
 
 			<div class="row text-center slideanim">
-				<div class="col-sm-6">
-					<button class="btn btn-default btn-lg" id="addjob">Add a
-						Job Opening!</button>
+				<div class="col-sm-3">
+					<button class="btn btn-default btn-lg glyphicon glyphicon-plus" id="addjob"> Add Listing!</button>
 
+				</div>
+				
+				<div class="col-sm-3">
+				<form action="managelisting.htm" method="post">
+					<button class="btn btn-default btn-lg glyphicon glyphicon-wrench" id="addjob"> Manage my Listing!</button>
+					<input type="hidden" name="compId" value="${sessionScope.company.id}">
+				</form>
 				</div>
 				
 				<div class="col-sm-6">
 				<form action="checkappstatus.htm" method="post">
-					<button class="btn btn-default btn-lg" id="checkstatus">Check
-						status of your application</button>
+					<button class="btn btn-default btn-lg glyphicon glyphicon-stats" id="checkstatus"> Check Applications for your listings!</button>
 						<input type="hidden" name="compId" value="${sessionScope.company.id}">
 				</form>
 				</div>
 				
 			</div>
-			<script type="text/javascript">
+			<div id="chart1" >
+			
+			
+			</div>
+						
+<script type="text/javascript">
 				$(document)
 						.ready(
 								function() {
@@ -68,10 +82,42 @@
 
 
 								});
+</script>
+			<script>
+			$(document).ready(function(){
+		        $.jqplot.config.enablePlugins = true;
+		        var s1 = [2, 6, 7, 10];
+		        var ticks = ['Software Developer', 'UI Developer', 'UX Web Design', 'Project Manager'];
+		         
+		        plot1 = $.jqplot('chart1', [s1], {
+		            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+		            animate: !$.jqplot.use_excanvas,
+		            seriesDefaults:{
+		                renderer:$.jqplot.BarRenderer,
+		                pointLabels: { show: true }
+		            },
+		            axes: {
+		                xaxis: {
+		                    renderer: $.jqplot.CategoryAxisRenderer,
+		                    ticks: ticks
+		                }
+		            },
+		            highlighter: { show: false }
+		        });
+		     
+		        $('#chart1').bind('jqplotDataClick', 
+		            function (ev, seriesIndex, pointIndex, data) {
+		                $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+		            }
+		        );
+		    });
 			</script>
 
 
 		</c:otherwise>
 	</c:choose>
+	
+	
 </body>
+
 </html>
