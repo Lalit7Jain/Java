@@ -6,11 +6,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import javax.validation.Validator;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -35,9 +35,9 @@ public class ListingController {
 
 	@Autowired
 	ListingService listingService;
-
+	
 	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView jobPost(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("companyListing") @Valid CompanyListing companyListing, BindingResult result){
+	public ModelAndView jobPost(@ModelAttribute("companyListing") @Valid CompanyListing companyListing, BindingResult result, HttpServletRequest request ){
 	
 		ModelAndView mav = null;
 		
@@ -53,7 +53,7 @@ public class ListingController {
 				System.out.println("Default message : " + error.getDefaultMessage());
 			}
 			mav = new ModelAndView("postjob","companyListing", companyListing);
-			
+			return mav;
 		}
 		
 		HttpSession session = request.getSession();
@@ -69,39 +69,13 @@ public class ListingController {
 		} else {
 			
 			mav = new ModelAndView("postjob","companyListing", companyListing);
+			return mav;
 		}
 		
 		return mav;
 	}
 	
-//	@RequestMapping(method = RequestMethod.POST)
-//	public String listingJob(@ModelAttribute("companyListing") @Valid CompanyListing companyListing, BindingResult result,
-//			ModelMap model) {
-//
-//		
-//		
-//		
-//		Company company = companyService.getCompanybyEmail(companyListing.getName());
-//		if (company == null) {
-//
-//			Company newcompany = companyListing.getCompany();
-//			Long compId = companyService.save(newcompany);
-//
-//			Listing newListing = companyListing.getListing();
-//			newListing.setCompany(newcompany);
-//			listingService.save(newListing);
-//
-//			model.addAttribute("listingSucess", true);
-//			model.addAttribute("listingname", newListing.getTitle());
-//			return "postjob";
-//
-//		} else {
-//			model.addAttribute("companyListing", companyListing);
-//			return "postjob";
-//
-//		}
-//
-//	}
+
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String initializeForm(@ModelAttribute("companyListing") CompanyListing companyListing, BindingResult result)

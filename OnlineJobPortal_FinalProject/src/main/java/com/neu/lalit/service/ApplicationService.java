@@ -11,5 +11,5 @@ public interface ApplicationService {
 	public List<Application> getApplication();
 
 	public void deleteApplication(Long id);
-	
+	public Long getnoofApplications(Long listingid);
 }

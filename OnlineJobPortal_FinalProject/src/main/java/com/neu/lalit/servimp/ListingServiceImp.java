@@ -26,6 +26,8 @@ public class ListingServiceImp implements ListingService {
 
 	public void update(Listing listing) {
 		listingDao.update(listing);
+		listingDao.flush();
+		listingDao.refresh(listing);
 	}
 
 	public Listing getById(Long id) {

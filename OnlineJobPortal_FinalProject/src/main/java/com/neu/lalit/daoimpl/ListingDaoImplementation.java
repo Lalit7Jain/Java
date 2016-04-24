@@ -39,6 +39,7 @@ public class ListingDaoImplementation extends GenericDaoImplementation<Listing, 
 		Criteria cmpCrit = criteria.createCriteria("company");
 		cmpCrit.add(Restrictions.eq("id", id));
 		List<Listing> companyListings = criteria.list();
+		
 		return companyListings;
 	}
 

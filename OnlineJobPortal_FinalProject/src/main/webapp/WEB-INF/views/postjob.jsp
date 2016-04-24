@@ -6,6 +6,19 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<style>
+.error {
+	color: #ff0000;
+}
+
+.errorblock {
+	color: #000;
+	background-color: #ffEEEE;
+	border: 3px solid #ff0000;
+	padding: 8px;
+	margin: 16px;
+}
+</style>
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link href="http://fonts.googleapis.com/css?family=Montserrat"
@@ -20,12 +33,13 @@
 	<c:choose>
 	<c:when test="${empty listingname}">
 	<div class=container>
-		<form:form action="postjob.htm" commandName="companyListing"
-			method="post">
 			<hr>
 			<div class="jumbotron text-center">
 				<h> Post an add of your job description, and will find the right candidates for you</h>
 			</div>
+		<form:form action="postjob.htm" commandName="companyListing" method="post">
+			
+			<form:errors path="*" cssClass="errorblock" element="div" />
 			<table class=table>
 				<tr>
 					<td>Company Name:</td>
@@ -35,8 +49,7 @@
 
 				<tr>
 					<td>Job Title:</td>
-					<td><form:input path="title" size="30" /> <font color="red"><form:errors
-								path="title" /></font></td>
+					<td><form:input path="title" size="30" /> <font color="red"><form:errors cssClass="error" path="title" /></font></td>
 				</tr>
 
 				<tr>

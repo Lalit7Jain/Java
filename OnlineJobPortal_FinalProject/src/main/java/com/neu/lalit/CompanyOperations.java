@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,12 +17,16 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.neu.lalit.pojo.Company;
 import com.neu.lalit.pojo.Listing;
+import com.neu.lalit.pojo.User;
+import com.neu.lalit.service.CompanyService;
 import com.neu.lalit.service.ListingService;
 
 @Controller
 @RequestMapping
 public class CompanyOperations {
 
+	@Autowired
+	CompanyService companyservice;
 	
 	@Autowired
 	ListingService listingservice;
@@ -92,6 +97,12 @@ public class CompanyOperations {
 		HttpSession session = request.getSession();
 		Company company = (Company)session.getAttribute("company");
 		listing.setCompany(company);
+		
+		java.util.Date dt = new java.util.Date();
+		java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String currentTime = sdf.format(dt);
+		listing.setCreateDate(dt);
+		
 		listingservice.update(listing);
 		String message = "Updated Successfully";
 		mav = new ModelAndView("listingupdateform","message",message);
@@ -99,5 +110,68 @@ public class CompanyOperations {
 		return mav;
 	}
 
+	@RequestMapping(value="/company/{id}/update.htm", method = RequestMethod.GET)
+	public ModelAndView updateCompany(@PathVariable ("id") Long id, HttpServletRequest request){
+		ModelAndView mav = null;
+		HttpSession session = request.getSession();
+		Company c = (Company)session.getAttribute("company");
+		if (c == null){
+			mav = new ModelAndView("companyupdateform");
+			return mav;
+		}
+		
+		Company company = companyservice.getById(id);
+		if(company != null && (company.getId().longValue() == c.getId().longValue())){
+			
+			mav = new ModelAndView("companyupdateform","companyupdate",company);
+			
+			
+		} else {
+			mav = new ModelAndView("companyupdateform");
+		}
+		
+		
+		return mav;
+	}
+	
+
+	@RequestMapping(value="/company/{id}/update.htm", method = RequestMethod.POST)
+	public ModelAndView userSave(@PathVariable ("id") Long id, Company company){
+		ModelAndView mav = null;
+		companyservice.update(company);
+		String message = "Updated profile sucessfully! Please sign in again since we have changed your profile";
+		mav = new ModelAndView("companyupdateform","message",message);
+		return mav;
+		
+		
+	}
+	
+	@RequestMapping(value = "/company/{id}/logout.htm")
+	public ModelAndView logoutCompany(@PathVariable("id") Long id,  HttpServletRequest request){
+		
+		ModelAndView mav = null;
+		HttpSession session = request.getSession();
+		
+		Company c = companyservice.getById(id);
+		Company c2 = (Company)session.getAttribute("company");
+		
+		if(c.getId().longValue() == c2.getId().longValue()){
+			session.invalidate();
+			mav = new ModelAndView("home");		
+			
+		}		
+		
+		return mav;	
+		
+	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

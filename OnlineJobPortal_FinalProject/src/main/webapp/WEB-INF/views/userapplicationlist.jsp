@@ -119,8 +119,8 @@
 									<td>Application Id</td>
 									<td>Job Id</td>
 									<td>Company Name</td>
-									<td>Title</td>
 									<td>Creation Date</td>
+									<td>Title</td>
 									<td>Salary</td>
 									<td>Withdraw Application</td>
 								</tr>

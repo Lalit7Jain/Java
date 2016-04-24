@@ -37,6 +37,12 @@
 					<td><form:input path="id" size="30" disabled="true" /> <font color="red"><form:errors
 								path="id" /></font></td>
 				</tr>
+				
+				<tr>
+					<td>Created Date:</td>
+					<td><form:input path="createDate" size="30" disabled="true" /> <font color="red"><form:errors
+								path="createDate" /></font></td>
+				</tr>
 					
 				<tr>
 					<td>Job Title:</td>

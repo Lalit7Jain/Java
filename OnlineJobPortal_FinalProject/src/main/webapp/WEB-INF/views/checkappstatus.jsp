@@ -4,18 +4,21 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-<script
-	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<link href="<c:url value="/resources/css/jqx.base.css" />" rel="stylesheet">
+   
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet"
-	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-<link href="http://fonts.googleapis.com/css?family=Montserrat"
-	rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Lato"
-	rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
 
+    <style type="text/css">
+        .labels {
+            font-size: smaller;
+        }
+    </style>
+  
 <title> Application status here! </title>
 </head>
 <body>
@@ -25,7 +28,7 @@
   <div class="row">
 			<h2>
 				
-				<p>Hello <c:out value="${sessionScope.company.name}"></c:out> . Job search application status below</p>		
+				<p> Candidates application for your listing is shown below</p>		
 			</h2>
 			<hr>
 			</div>
@@ -93,14 +96,21 @@
 				</c:forEach>
                     </tbody>
                 </table>   
+                <hr>
 		</div>
 	</div>
 </div>
- 
+ <div class="container">
+  			<h4>				
+				<p> Chart view for Application's. <strong style="color: red;"> Hover for more details </strong></p>		
+			</h4>
+  <div id='chartContainer' style="width: 860px; height: 600px; margin-bottom: 25px;"></div>
+ </div>
  
  </c:otherwise>
  
  </c:choose>
+  
  <script>
  $(document).ready(function() {
 	    var activeSystemClass = $('.list-group-item.active');
@@ -148,6 +158,82 @@
 	        }
 	    });
 	});
+ </script>
+ <script src="<c:url value="/resources/js/jqxcore.js" />"></script>
+   <script src="<c:url value="/resources/js/jqxdata.js" />"></script>
+   <script  src="<c:url value="/resources/js/jqxdraw.js" />"></script>
+   <script src="<c:url value="/resources/js/jqxchart.core.js" />"></script>
+ <script type="text/javascript">
+ $(document).ready(
+         function () {
+             var source = {
+                 datatype: "json",
+                 datafields: [{
+                     name: 'title',
+                     type: 'string'
+                 }, {
+                     name: 'noofapplications',
+                     type: 'int'
+                 }],
+                 url: '${pageContext.request.contextPath}/chart/applications.htm',
+                 type: 'POST',
+                 async: true
+             };
+             var dataAdapter = new $.jqx.dataAdapter(source);
+             var settings = {
+                 title: "Applications for Job Listing ",
+                 description: "  ",
+                 padding: {
+                     left: 5,
+                     top: 5,
+                     right: 15,
+                     bottom: 5
+                 },
+                 titlePadding: {
+                     left: 90,
+                     top: 0,
+                     right: 0,
+                     bottom: 10
+                 },
+                 source: dataAdapter,
+                 xAxis: {
+                     dataField: 'title',
+                     displayText: 'Listing Title',
+                     gridLines: {
+                         visible: true
+                     },
+                     valuesOnTicks: false,
+                     type: 'basic',
+                     labels: {
+                         class: 'labels',
+                         angle: 90,
+                         formatFunction: function (value) {
+                             return value.replace(/\?/g, '');
+                         }
+                     },
+                     flip: false
+                 },
+                 colorScheme: 'scheme02',
+                 seriesGroups: [{
+                     type: 'column',
+                     columnsGapPercent: 30,
+                     seriesGapPercent: 0,
+                     orientation: 'horizontal',
+                     valueAxis: {
+                         minValue: 0,
+                         unitInterval: 5,
+                         description: 'No of applications',
+                         flip: true
+                     },
+                     series: [{
+                         dataField: 'noofapplications',
+                         displayText: 'No of Applications'
+                     }]
+                 }]
+             };
+             $('#chartContainer').jqxChart(settings);
+         });
+ 
  </script>
   <jsp:include page="footer.jsp"></jsp:include>
 </body>

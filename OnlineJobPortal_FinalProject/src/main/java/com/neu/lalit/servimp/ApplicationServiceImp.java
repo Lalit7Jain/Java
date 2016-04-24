@@ -38,4 +38,11 @@ public class ApplicationServiceImp implements ApplicationService {
 		
 	}
 
+	@Override
+	public Long getnoofApplications(Long listingid) {
+		
+		Long result = applicationdao.getnoofApplications(listingid);
+		return result;
+	}
+
 }

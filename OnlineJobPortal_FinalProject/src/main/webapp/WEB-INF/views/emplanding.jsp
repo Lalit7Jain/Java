@@ -4,6 +4,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link href="<c:url value="/resources/css/jquery.jqplot.min.css" />" rel="stylesheet">
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 <link href="http://fonts.googleapis.com/css?family=Montserrat"
@@ -15,10 +16,7 @@
 <script
 	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <link href="<c:url value="/resources/css/jquery.jqplot.min.css" />" rel="stylesheet">
-    <script src="<c:url value="/resources/js/jquery.jqplot.min.js" />"></script>
-    <script src="<c:url value="/resources/js/jqplot.barRenderer.js" />"></script>
-    <script src="<c:url value="/resources/js/jqplot.categoryAxisRenderer.js" />"></script>
+    
 <title>Employer Home</title>
 </head>
 <body>
@@ -48,7 +46,7 @@
 
 			<div class="row text-center slideanim">
 				<div class="col-sm-3">
-					<button class="btn btn-default btn-lg glyphicon glyphicon-plus" id="addjob"> Add Listing!</button>
+				<button class="btn btn-default btn-lg glyphicon glyphicon-plus" id="addjob"> Add Listing!</button>
 
 				</div>
 				
@@ -67,10 +65,7 @@
 				</div>
 				
 			</div>
-			<div id="chart1" >
 			
-			
-			</div>
 						
 <script type="text/javascript">
 				$(document)
@@ -83,40 +78,15 @@
 
 								});
 </script>
-			<script>
-			$(document).ready(function(){
-		        $.jqplot.config.enablePlugins = true;
-		        var s1 = [2, 6, 7, 10];
-		        var ticks = ['Software Developer', 'UI Developer', 'UX Web Design', 'Project Manager'];
-		         
-		        plot1 = $.jqplot('chart1', [s1], {
-		            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
-		            animate: !$.jqplot.use_excanvas,
-		            seriesDefaults:{
-		                renderer:$.jqplot.BarRenderer,
-		                pointLabels: { show: true }
-		            },
-		            axes: {
-		                xaxis: {
-		                    renderer: $.jqplot.CategoryAxisRenderer,
-		                    ticks: ticks
-		                }
-		            },
-		            highlighter: { show: false }
-		        });
-		     
-		        $('#chart1').bind('jqplotDataClick', 
-		            function (ev, seriesIndex, pointIndex, data) {
-		                $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
-		            }
-		        );
-		    });
-			</script>
+			
 
 
 		</c:otherwise>
 	</c:choose>
 	
+    <script src="<c:url value="/resources/js/jquery.jqplot.min.js" />"></script>
+    <script src="<c:url value="/resources/js/jqplot.barRenderer.js" />"></script>
+    <script src="<c:url value="/resources/js/jqplot.categoryAxisRenderer.js" />"></script>
 	
 </body>
 
