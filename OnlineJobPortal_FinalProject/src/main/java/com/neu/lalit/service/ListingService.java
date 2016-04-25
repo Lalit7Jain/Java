@@ -13,4 +13,5 @@ public interface ListingService {
 	public List<Listing> searchListing(String key);
 	public List<Listing> companyListing(Long id);
 	public void deleteListing(Long id);
+	public String getCompanyname(Long id);
 }

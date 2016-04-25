@@ -57,4 +57,10 @@ public class ListingServiceImp implements ListingService {
 		
 	}
 
+	@Override
+	public String getCompanyname(Long id) {
+		String name = listingDao.getCompanyname(id);
+		return name;
+	}
+
 }

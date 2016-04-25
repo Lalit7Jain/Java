@@ -15,6 +15,7 @@
 <title>Update form! </title>
 </head>
 <body>
+<jsp:include page="usernav.jsp"></jsp:include>
 <c:choose>
 
 		<c:when test="${!(userupdate == null)}">
@@ -22,7 +23,7 @@
 				<form:form commandName="userupdate" method="post" enctype='multipart/form-data'>
 					<hr>
 					<div class="jumbotron text-center">
-						<h> Update profile </h>
+						<h2> Update profile </h2>
 					</div>
 					<table class=table>
 						<tr>
@@ -99,6 +100,6 @@
 		</c:otherwise>
 		
 	</c:choose>
-
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

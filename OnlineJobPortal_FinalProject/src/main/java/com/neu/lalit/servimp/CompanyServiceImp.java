@@ -46,6 +46,11 @@ public class CompanyServiceImp implements CompanyService {
 		return companyDao.getMyListing(compId);
 	}
 
+	@Override
+	public List<Company> getAllCompanies() {
+		return companyDao.loadAll();
+	}
+
 	
 
 }

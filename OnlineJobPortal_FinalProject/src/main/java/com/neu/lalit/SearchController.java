@@ -19,8 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.neu.lalit.pojo.Company;
 import com.neu.lalit.pojo.Listing;
 import com.neu.lalit.pojo.User;
+import com.neu.lalit.service.CompanyService;
 import com.neu.lalit.service.ListingService;
 
 @Controller
@@ -29,6 +31,9 @@ public class SearchController {
 
 	@Autowired
 	ListingService listingservice;
+	
+	@Autowired
+	CompanyService companyservice;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView searchResult(HttpServletRequest request, HttpServletResponse response) {
@@ -44,10 +49,16 @@ public class SearchController {
 			mav = new ModelAndView("userlanding", "user", user);
 		} else {
 			System.out.println("********* Went into list");
+			ArrayList<String> compname = new ArrayList<String>();
 			//List<Listing> listingList = listingservice.getListing();
 			List<Listing> listingList = listingservice.searchListing(key);
 			
+			for(Listing l: listingList){
+				compname.add(listingservice.getCompanyname(l.getId()));
+			}
+			
 			mav = new ModelAndView("userlanding", "listing", listingList);
+			mav.addObject("compname", compname);
 		}
 
 		return mav;

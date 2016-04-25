@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.neu.lalit.pojo.Company;
 import com.neu.lalit.pojo.User;
+import com.neu.lalit.service.CompanyService;
 import com.neu.lalit.service.UserService;
 
 @Controller
@@ -29,7 +31,7 @@ public class SignInUserController {
 
 	@Autowired
 	UserService userservice;
-
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public ModelAndView executeSignIn(HttpServletRequest request, HttpServletResponse response,@ModelAttribute("user") User user, BindingResult result )
 	 {
@@ -60,6 +62,7 @@ public class SignInUserController {
 				httpSession.setAttribute("user", newuser);
 				model = new ModelAndView("userlanding");
 				model.addObject("userLogged",newuser);
+			
 				return model;
 //				model.addAttribute("userLogged", newuser);
 //				return "searchjob";

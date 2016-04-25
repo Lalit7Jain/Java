@@ -159,11 +159,15 @@
 									<td>Apply</td>
 								</tr>
 								</thead>
-								<c:forEach varStatus="loop" var="item"
-									items="${requestScope.listing}">
+								<c:forEach varStatus="loop" var="item"	items="${requestScope.listing}">
+								
 									<tr>
 										<td><c:out value="${item.id}"></c:out></td>
-										<td><c:out value="${item}"></c:out></td>
+										
+										
+										<td><c:out value="${compname[loop.index]}"></c:out></td>
+										
+										
 										<td><c:out value="${item.title}"></c:out></td>
 										<td><textarea class="scrollabletextbox"><c:out
 													value="${item.description}"></c:out></textarea></td>
@@ -171,6 +175,7 @@
 										<td><input type="button" id="apply" class="apply"
 											value="Apply" /></td>
 									</tr>
+									
 								</c:forEach>
 							</table>
 							<input type="hidden" id="userId" value="${sessionScope.user.id}" />
@@ -279,6 +284,6 @@
 			return xmlHttp;
 		}
 	</script>
-
+<jsp:include page="footer.jsp"></jsp:include>
 </body>
 </html>

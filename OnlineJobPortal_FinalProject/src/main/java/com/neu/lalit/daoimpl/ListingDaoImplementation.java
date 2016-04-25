@@ -1,12 +1,15 @@
 package com.neu.lalit.daoimpl;
 
+
 import java.util.ArrayList;
-import java.util.Iterator;
+
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
+import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 
@@ -41,6 +44,18 @@ public class ListingDaoImplementation extends GenericDaoImplementation<Listing, 
 		List<Listing> companyListings = criteria.list();
 		
 		return companyListings;
+	}
+
+	@Override
+	public String getCompanyname(Long id) {
+		String querystring = "SELECT Distinct c.name "
+				+ "FROM listing l inner join company c "
+				+ "on l.compId = c.id where l.id = " + id;
+		String name = (String)this.sessionFactory.getCurrentSession().createSQLQuery(querystring).uniqueResult();
+		
+		return name;
+		
+
 	}
 
 }

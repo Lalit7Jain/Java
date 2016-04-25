@@ -14,5 +14,6 @@ public interface CompanyService {
 	public Company getById(Long id);
 	public Company getCompanybyEmail(String email);
 	public List<JobApplication> getmyListing(Long compId);
+	public List<Company> getAllCompanies();
 	
 }
