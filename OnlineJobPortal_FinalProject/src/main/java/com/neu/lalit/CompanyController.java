@@ -2,6 +2,8 @@ package com.neu.lalit;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.log4j.Logger;
@@ -29,7 +31,7 @@ public class CompanyController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String singin(@ModelAttribute("companyRegistration") @Valid CompanyRegistration companyRegistration,
-			BindingResult result, ModelMap model) {
+			BindingResult result, ModelMap model, HttpServletRequest request) {
 
 		// @Valid is used for Bean validation not using any other spring or
 		// hibernate validator. Rather using JSR-303 bean validation capability
@@ -44,13 +46,17 @@ public class CompanyController {
 				System.out.println("Arguments : " + error.getArguments());
 				System.out.println("Default message : " + error.getDefaultMessage());
 			}
+			String message = "Please submit proper values highlighted below";
 			model.put("companyRegistration", companyRegistration);
+			model.addAttribute("message",message);
 			return "empregister";
 		}
 
 		// check password and confirm password match
 		if (!companyRegistration.getPassword().equals(companyRegistration.getConfirmPassword())) {
-			model.addAttribute("passNotMatch", true);
+			String message = "Password does not match";
+			model.put("companyRegistration", companyRegistration);
+			model.addAttribute("message", message);
 			return "empregister";
 		}
 
@@ -61,14 +67,21 @@ public class CompanyController {
 			// Save the user to database
 
 			Company newcompany = companyRegistration.getCompany();
-			companyservice.save(newcompany);		
+			companyservice.save(newcompany);
+			
+			//add to session
+			HttpSession session = request.getSession();
+			session.setAttribute("company", newcompany);
 			
 			model.addAttribute("company", newcompany);
 			model.addAttribute("signupSuccess",true);
 			return "empregister";
 			
 		} else {
-			model.addAttribute("duplicateEmailError", true);
+			
+			String message = "Duplicate Email address found";
+			model.put("companyRegistration", companyRegistration);
+			model.addAttribute("message", message);
 			return "empregister";
 		}
 		

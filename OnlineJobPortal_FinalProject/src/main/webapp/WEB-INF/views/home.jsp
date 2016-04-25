@@ -219,7 +219,8 @@
 
 <div class="jumbotron text-center">
   <h1>Welcome to the Online Job Portal! </h1> 
-  <p> Today's time is "${serverTime}")</p> 
+  <p> Today's time is "${serverTime}"</p> 
+  <p> JobSeeker Sign In/Register here </p>
   
  
   <form class="form-inline">

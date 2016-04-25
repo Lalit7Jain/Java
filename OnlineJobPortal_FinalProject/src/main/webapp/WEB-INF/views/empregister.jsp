@@ -25,6 +25,9 @@
 					<div class="jumbotron text-center">
 						<p>Register and create your Job openings!</p>
 					</div>
+					<div id="message">
+					<p style="color: red;"><c:out value="${message}"></c:out>  </p>
+					</div>
 					<table class=table>
 
 						<tr>
@@ -67,7 +70,7 @@
 					<p> Thank you <c:out value="${company.name}"></c:out>! You have successfully registered with us</p>
 					
 
-					<a href="empsignin.htm"> Start posting you job applications by signing here!</a>
+					<a href="emplanding.htm"> Start posting you job applications by signing here!</a>
 
 				</div>
 			</div>

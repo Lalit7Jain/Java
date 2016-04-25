@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.apache.commons.mail.DefaultAuthenticator;
@@ -45,7 +47,7 @@ public class UserController {
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String singin(@ModelAttribute("userRegistration") @Valid UserRegistration userRegistration,
-			BindingResult result, ModelMap model) {
+			BindingResult result, ModelMap model, HttpServletRequest request) {
 
 		// @Valid is used for Bean validation not using any other spring or
 		// hibernate validator. Rather using JSR-303 bean validation capability
@@ -60,13 +62,17 @@ public class UserController {
 				System.out.println("Arguments : " + error.getArguments());
 				System.out.println("Default message : " + error.getDefaultMessage());
 			}
+			String message = "Please submit proper values highlighted below";
 			model.put("userRegistration", userRegistration);
+			model.addAttribute("message",message);
 			return "register";
 		}
 
 		// check password and confirm password match
 		if (!userRegistration.getPassword().equals(userRegistration.getConfirmPassword())) {
-			model.addAttribute("passNotMatch", true);
+			String message = "Password does not match";
+			model.put("userRegistration", userRegistration);
+			model.addAttribute("message", message);
 			return "register";
 		}
 
@@ -78,7 +84,11 @@ public class UserController {
 
 			User newuser = userRegistration.getUser();
 			Long userId = userservice.save(newuser);
-
+			
+			//save user to session
+			HttpSession session = request.getSession();
+			session.setAttribute("user", newuser);
+			
 			// save the user's resume
 			CommonsMultipartFile resumefile = userRegistration.getResume();
 			Resume resume = new Resume();
@@ -123,7 +133,9 @@ public class UserController {
 			return "register";
 			
 		} else {
-			model.addAttribute("duplicateEmailError", true);
+			String message = "Duplicate email address found";
+			model.put("userRegistration", userRegistration);
+			model.addAttribute("message", message);
 			return "register";
 		}
 		

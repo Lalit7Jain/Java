@@ -26,6 +26,9 @@
 						<h> Signup for all the latest job posting available by
 						established companies</h>
 					</div>
+					<div id=message>
+						<p style="color: red;"><c:out value="${message}"></c:out></p>
+					</div>
 					<table class=table>
 						<tr>
 							<td>Email:</td>
@@ -108,7 +111,7 @@
 					<h> Thank you! You have sucessfully registered with us</h>
 					<p> Now, its our duty to get you the right companies which matches your skill</p>
 					
-					<a href="#" > Till that time, you can search jobs here</a>
+					<a href="userlanding.htm" > Till that time, you can search jobs here</a>
 					
 				</div>
 			</div>
